@@ -1,8 +1,15 @@
 const { forIn, reduce, find } = require('lodash')
 
-module.exports = ({ commands = [], defaultCommandName } = {}) => {
+module.exports = ({ args, action, commands = [], defaultCommandName } = {}) => {
 
   const program = require('commander')
+
+  if (args !== undefined) {
+    program.arguments(args)
+  }
+  if (action !== undefined) {
+    program.action(action)
+  }
 
   forIn(
     commands,
@@ -19,7 +26,9 @@ module.exports = ({ commands = [], defaultCommandName } = {}) => {
   if (defaultCommandName !== undefined && process.argv.length <= 2) {
     return find(commands, { name: defaultCommandName }).handler()
   } else {
-    program.on('command:*', () => program.help())
+    if (commands.length > 0) {
+      program.on('command:*', () => program.help())
+    }
 
     return program.parse(process.argv)
   }
