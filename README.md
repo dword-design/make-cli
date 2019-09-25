@@ -1,9 +1,9 @@
 <!--@h1([pkg.name])-->
-# cli-mate
+# make-cli
 <!--/@-->
 
 <!--@shields('npm', 'travis', 'coveralls')-->
-[![npm version](https://img.shields.io/npm/v/cli-mate.svg)](https://www.npmjs.com/package/cli-mate) [![Build Status](https://img.shields.io/travis/dword-design/cli-mate/master.svg)](https://travis-ci.org/dword-design/cli-mate) [![Coverage Status](https://img.shields.io/coveralls/dword-design/cli-mate/master.svg)](https://coveralls.io/r/dword-design/cli-mate?branch=master)
+[![npm version](https://img.shields.io/npm/v/make-cli.svg)](https://www.npmjs.com/package/make-cli) [![Build Status](https://img.shields.io/travis/dword-design/make-cli/master.svg)](https://travis-ci.org/dword-design/make-cli) [![Coverage Status](https://img.shields.io/coveralls/dword-design/make-cli/master.svg)](https://coveralls.io/r/dword-design/make-cli?branch=master)
 <!--/@-->
 
 <!--@pkg.description-->
@@ -14,10 +14,10 @@ Build command line tools declaratively with a configuration object and a single 
 
 ```sh
 # via NPM
-npm install --save cli-mate
+npm install --save make-cli
 
 # via Yarn
-yarn add cli-mate
+yarn add make-cli
 ```
 
 ## Usage
@@ -27,9 +27,9 @@ First the CLI has to be implemented:
 ```js
 #!/usr/bin/env node
 
-const cliMate = require('cli-mate')
+const makeCli = require('make-cli')
 
-cliMate({
+makeCli({
   version: '0.1.0',
   name: 'my-cli',
   usage: 'Usage description here',
@@ -49,7 +49,7 @@ cliMate({
 
 // It is also possible to define sub-commands
 
-cliMate({
+makeCli({
   commands: [
     {
       name: 'push',

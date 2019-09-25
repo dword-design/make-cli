@@ -1,8 +1,8 @@
 {
-  "name": "cli-mate",
-  "version": "1.0.0",
+  "name": "make-cli",
+  "version": "1.0.1",
   "main": "src/index.js",
-  "repository": "https://github.com/dword-design/cli-mate",
+  "repository": "https://github.com/dword-design/make-cli",
   "author": "Sebastian Landwehr <info@dword-design.de>",
   "license": "MIT",
   "description": "Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js",

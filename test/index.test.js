@@ -1,4 +1,4 @@
-const cliMate = require('this')
+const makeCli = require('this')
 const { spawn } = require('child-process-promise')
 const { writeFile, exists } = require('fs-extra')
 const endent = require('endent')
@@ -15,11 +15,11 @@ const runCli = async ({ optionsString: _optionsString, arguments: args = [], che
     endent`
       #!/usr/bin/env node
 
-      const cliMate = require('this')
+      const makeCli = require('this')
       const { writeFile } = require('fs-extra')
       const { join } = require('path')
 
-      cliMate(${optionsString(path)})
+      makeCli(${optionsString(path)})
     `,
     { mode: '755' },
   )
