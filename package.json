@@ -1,10 +1,54 @@
 {
-  "name": "@dword-design/yes-sir",
-  "version": "0.1.1",
+  "name": "cli-mate",
+  "version": "1.0.0",
   "main": "src/index.js",
+  "repository": "https://github.com/dword-design/cli-mate",
+  "author": "Sebastian Landwehr <info@dword-design.de>",
   "license": "MIT",
+  "description": "Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js",
+  "keywords": [
+    "cli",
+    "mate",
+    "command",
+    "commander",
+    "interface",
+    "declarative",
+    "functional",
+    "fp",
+    "option",
+    "argument",
+    "optional"
+  ],
+  "scripts": {
+    "test:readme": "mos test",
+    "test:unit": "nyc --reporter text --reporter lcov --include src/** jest --coverage --coverageReporters none",
+    "test": "npm-run-all test:* ; rimraf .nyc_output",
+    "prepublishOnly:readme": "mos",
+    "prepublishOnly": "npm-run-all prepublishOnly:*"
+  },
+  "mos": {
+    "installation": false
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "dependencies": {
-    "commander": "^2.20.0",
-    "lodash": "^4.17.15"
+    "commander": "^2.20.0"
+  },
+  "devDependencies": {
+    "child-process-promise": "^2.2.1",
+    "endent": "^1.3.0",
+    "fs-extra": "^8.1.0",
+    "husky": "^3.0.5",
+    "jest": "^24.9.0",
+    "mos": "^1.3.1",
+    "npm-run-all": "^4.1.5",
+    "nyc": "^14.1.1",
+    "rimraf": "^3.0.0",
+    "spawn-wrap": "^1.4.3",
+    "this": "dword-design/this#fork",
+    "with-local-tmp-dir": "^0.1.10"
   }
 }

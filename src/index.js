@@ -1,30 +1,43 @@
-const { forIn, reduce, find } = require('lodash')
+const applyOptions = (program, options = []) => options.forEach(({ name, description, defaultValue }) => program.option(name, description, defaultValue))
 
-module.exports = ({ args, action, commands = [], defaultCommandName } = {}) => {
+module.exports = ({ version, name, usage, arguments: args, options, action, commands = [], defaultCommandName } = {}) => {
 
   const program = require('commander')
+
+  if (version !== undefined) {
+    program.version(version)
+  }
+
+  if (name !== undefined) {
+    program.name(name)
+  }
+
+  if (usage !== undefined) {
+    program.usage(usage)
+  }
 
   if (args !== undefined) {
     program.arguments(args)
   }
+
+  applyOptions(program, options)
+
   if (action !== undefined) {
     program.action(action)
   }
 
-  forIn(
-    commands,
-    ({ name, description, options, handler }) => reduce(
-      options,
-      (command, { name, description, defaultValue }) => command.option(name, description, defaultValue),
+  commands.forEach(
+    ({ name, arguments: args, description, options, handler }) => applyOptions(
       program
-        .command(name)
+        .command(`${name}${args !== '' ? ` ${args}` : ''}`)
         .description(description)
         .action(handler),
+      options
     )
   )
 
   if (defaultCommandName !== undefined && process.argv.length <= 2) {
-    return find(commands, { name: defaultCommandName }).handler()
+    return commands.find(({ name }) => name === defaultCommandName).handler()
   } else {
     if (commands.length > 0) {
       program.on('command:*', () => program.help())
