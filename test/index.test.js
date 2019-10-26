@@ -1,9 +1,10 @@
-const makeCli = require('this')
+const makeCli = require('make-cli')
 const { spawn } = require('child-process-promise')
 const { writeFile, exists } = require('fs-extra')
 const endent = require('endent')
 const withLocalTmpDir = require('with-local-tmp-dir')
 const { join } = require('path')
+const expect = require('expect')
 
 const runCli = async ({ optionsString: _optionsString, arguments: args = [], check: _check }) => withLocalTmpDir(async path => {
 
@@ -15,7 +16,7 @@ const runCli = async ({ optionsString: _optionsString, arguments: args = [], che
     endent`
       #!/usr/bin/env node
 
-      const makeCli = require('this')
+      const makeCli = require('make-cli')
       const { writeFile } = require('fs-extra')
       const { join } = require('path')
 
@@ -37,14 +38,14 @@ const runCli = async ({ optionsString: _optionsString, arguments: args = [], che
   }
 })
 
-test('action', async () => runCli({
+it('action', async () => runCli({
   optionsString: "{ action: () => console.log('foo') }",
   check: 'foo\n',
 }))
 
 describe('arguments', () => {
 
-  test('mandatory', async () => runCli({
+  it('mandatory', async () => runCli({
     optionsString: endent`{
       arguments: '<first> <second>',
       action: (first, second) => { console.log(first); console.log(second) },
@@ -53,7 +54,7 @@ describe('arguments', () => {
     check: 'foo\nbar\n',
   }))
 
-  test('optional set', async () => runCli({
+  it('optional set', async () => runCli({
     optionsString: endent`{
       arguments: '[arg]',
       action: arg => console.log(arg),
@@ -62,7 +63,7 @@ describe('arguments', () => {
     check: 'foo\n',
   }))
 
-  test('optional not set', async () => runCli({
+  it('optional not set', async () => runCli({
     optionsString: endent`{
       arguments: '[arg]',
       action: arg => console.log(arg),
@@ -71,7 +72,7 @@ describe('arguments', () => {
   }))
 })
 
-test('options', async () => runCli({
+it('options', async () => runCli({
   optionsString: path => {
     const writeFileExpression = `writeFile(join('${path}', \`\${value}.txt\`), '')`
     return endent`{
@@ -87,7 +88,7 @@ test('options', async () => runCli({
 
 describe('commands', () => {
 
-  test('command', async () => runCli({
+  it('command', async () => runCli({
     optionsString: path => endent`{
       commands: [
         {
@@ -100,7 +101,7 @@ describe('commands', () => {
     check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
   }))
 
-  test('arguments', async () => runCli({
+  it('arguments', async () => runCli({
     optionsString: path => {
       const writeFileExpression = `writeFile(join('${path}', \`\${arg}.txt\`), '')`
       return endent`{
@@ -117,7 +118,7 @@ describe('commands', () => {
     check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
   }))
 
-  test('options', async () => runCli({
+  it('options', async () => runCli({
     optionsString: path => {
       const writeFileExpression = `writeFile(join('${path}', \`\${value}.txt\`), '')`
       return endent`{
@@ -136,7 +137,7 @@ describe('commands', () => {
     check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
   }))
 
-  test('default command', async () => runCli({
+  it('default command', async () => runCli({
     optionsString: endent`{
       commands: [
         {
@@ -150,7 +151,7 @@ describe('commands', () => {
   }))
 })
 
-test('help', async () => runCli({
+it('help', async () => runCli({
   optionsString: endent`{
     version: '0.1.0',
     name: 'the name',
@@ -166,7 +167,7 @@ test('help', async () => runCli({
   check: 'Usage: the name the usage\n\nOptions:\n  -V, --version  output the version number\n  -h, --help     output usage information\n\nCommands:\n  build          Builds the app\n',
 }))
 
-test('version', async () => runCli({
+it('version', async () => runCli({
   optionsString: "{ version: '0.1.0' }",
   arguments: ['--version'],
   check: '0.1.0\n',
