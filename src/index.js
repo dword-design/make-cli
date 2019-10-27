@@ -1,6 +1,6 @@
 const applyOptions = (program, options = []) => options.forEach(({ name, description, defaultValue }) => program.option(name, description, defaultValue))
 
-module.exports = ({ version, name, usage, arguments: args, options, action, commands = [], defaultCommandName } = {}) => {
+export default ({ version, name, usage, arguments: args, options, action, commands = [], defaultCommandName } = {}) => {
 
   const program = require('commander')
 
