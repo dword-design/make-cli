@@ -2,8 +2,8 @@
 # make-cli
 <!--/@-->
 
-<!--@shields('npm', 'travis', 'coveralls')-->
-[![npm version](https://img.shields.io/npm/v/make-cli.svg)](https://www.npmjs.com/package/make-cli) [![Build Status](https://img.shields.io/travis/dword-design/make-cli/master.svg)](https://travis-ci.org/dword-design/make-cli) [![Coverage Status](https://img.shields.io/coveralls/dword-design/make-cli/master.svg)](https://coveralls.io/r/dword-design/make-cli?branch=master)
+<!--@shields('npm', 'travis', 'coveralls', 'deps')-->
+[![npm version](https://img.shields.io/npm/v/make-cli.svg)](https://www.npmjs.com/package/make-cli) [![Build Status](https://img.shields.io/travis/dword-design/make-cli/master.svg)](https://travis-ci.org/dword-design/make-cli) [![Coverage Status](https://img.shields.io/coveralls/dword-design/make-cli/master.svg)](https://coveralls.io/r/dword-design/make-cli?branch=master) [![dependency status](https://img.shields.io/david/dword-design/make-cli.svg)](https://david-dm.org/dword-design/make-cli)
 <!--/@-->
 
 <!--@pkg.description-->
