@@ -2,31 +2,30 @@ import { spawn } from 'child-process-promise'
 import { writeFile, exists } from 'fs-extra'
 import { endent } from '@functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
-import { join } from 'path'
+import P from 'path'
 
-const runCli = async ({ optionsString: _optionsString, arguments: args = [], check: _check }) => withLocalTmpDir(async path => {
+const runCli = async ({ optionsString: _optionsString, arguments: args = [], check: _check }) => withLocalTmpDir(async () => {
 
   const optionsString = typeof _optionsString === 'function' ? _optionsString : () => _optionsString
-  const check = typeof _check === 'function' ? _check : ({ stdout }) => expect(stdout).toEqual(_check)
+  const check = typeof _check === 'function' ? _check : stdout => expect(stdout).toEqual(_check)
 
   await writeFile(
-    join(path, 'cli.js'),
+    'cli.js',
     endent`
       #!/usr/bin/env node
 
       const makeCli = require('make-cli')
       const { writeFile } = require('fs-extra')
-      const { join } = require('path')
 
-      makeCli(${optionsString(path)})
+      makeCli(${optionsString()})
     `,
     { mode: '755' },
   )
 
   try {
-    const { stdout } = await spawn(join(path, 'cli.js'), args, { capture: ['stdout', 'stderr'] })
+    const { stdout } = await spawn(P.resolve('cli.js'), args, { capture: ['stdout', 'stderr'] })
 
-    await check({ path, stdout })
+    await check(stdout)
 
   } catch (error) {
     if (error.stderr !== undefined) {
@@ -73,8 +72,8 @@ describe('index', () => {
   })
 
   it('options', async () => runCli({
-    optionsString: path => {
-      const writeFileExpression = `writeFile(join('${path}', \`\${value}.txt\`), '')`
+    optionsString: () => {
+      const writeFileExpression = 'writeFile(`${value}.txt`, \'\')'
       return endent`{
         options: [
           { name: '--value <value>' },
@@ -83,27 +82,27 @@ describe('index', () => {
       }`
     },
     arguments: ['--value', 'foo'],
-    check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
+    check: async () => expect(await exists('foo.txt')).toBeTruthy(),
   }))
 
   describe('commands', () => {
 
     it('command', async () => runCli({
-      optionsString: path => endent`{
+      optionsString: () => endent`{
         commands: [
           {
             name: 'build',
-            handler: () => writeFile(join('${path}', 'foo.txt'), ''),
+            handler: () => writeFile('foo.txt', ''),
           }
         ],
       }`,
       arguments: ['build'],
-      check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
+      check: async () => expect(await exists('foo.txt')).toBeTruthy(),
     }))
 
     it('arguments', async () => runCli({
-      optionsString: path => {
-        const writeFileExpression = `writeFile(join('${path}', \`\${arg}.txt\`), '')`
+      optionsString: () => {
+        const writeFileExpression = 'writeFile(`${arg}.txt`, \'\')'
         return endent`{
           commands: [
             {
@@ -115,12 +114,12 @@ describe('index', () => {
         }`
       },
       arguments: ['build', 'foo'],
-      check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
+      check: async () => expect(await exists('foo.txt')).toBeTruthy(),
     }))
 
     it('options', async () => runCli({
-      optionsString: path => {
-        const writeFileExpression = `writeFile(join('${path}', \`\${value}.txt\`), '')`
+      optionsString: () => {
+        const writeFileExpression = 'writeFile(`${value}.txt`, \'\')'
         return endent`{
           commands: [
             {
@@ -134,7 +133,7 @@ describe('index', () => {
         }`
       },
       arguments: ['build', '--value', 'foo'],
-      check: async ({ path }) => expect(await exists(join(path, 'foo.txt'))).toBeTruthy(),
+      check: async () => expect(await exists('foo.txt')).toBeTruthy(),
     }))
 
     it('default command', async () => runCli({
