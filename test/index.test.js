@@ -1,4 +1,4 @@
-import { spawn } from 'child-process-promise'
+import { spawn } from 'child_process'
 import { writeFile, exists } from 'fs'
 import { endent } from '@functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
