@@ -710,10 +710,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dword-design/base-node@^0.1.14":
-  version "0.1.14"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-node/-/base-node-0.1.14.tgz#7504d05ec4e7ff0cb047cfc6c07b60b2f4e51f9c"
-  integrity sha512-4wrPUIuOvfyAxWXDPrJvGRnfLxIO4fQFQKislMygiv/ATdz98mDVf+gbzYHXhuVdEWytsGIqPZA5RWxcWNkB0w==
+"@dword-design/base-node@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-node/-/base-node-0.2.0.tgz#125779887b1737f86ed8f89cd0a10b20a7f317e4"
+  integrity sha512-mwCgUOkVMnJYBQf+lmrg5Um/Qw/Gox8mHPrgirArlD8wRqia3IOawq1w9MnqvGK4nVSqwFvVakV4AqpVdSjMJQ==
   dependencies:
     "@babel/cli" "^7.6.4"
     "@babel/core" "^7.6.4"
@@ -723,20 +723,20 @@
     "@babel/preset-env" "^7.6.3"
     "@babel/register" "^7.6.2"
     "@dword-design/config-files" "^1.0.5"
-    "@dword-design/functions" "^0.7.11"
+    "@dword-design/functions" "^0.7.13"
     babel-eslint "^11.0.0-beta.0"
     babel-plugin-add-module-exports "^1.0.2"
     babel-plugin-module-resolver "^3.2.0"
     babel-plugin-transform-imports "^2.0.0"
     better-node-env "^1.0.3"
     child-process-promise "^2.2.1"
-    chokidar "^3.2.2"
+    chokidar "^3.2.3"
     debounce "^1.2.0"
     depcheck dword-design/depcheck#fork
     eslint "^6.6.0"
     eslint-import-resolver-babel-module "^5.1.0"
     eslint-plugin-import "^2.18.2"
-    eslint-plugin-mocha "^6.2.0"
+    eslint-plugin-mocha "^6.2.1"
     eslint-plugin-prefer-arrow "^1.1.6"
     expect "^24.9.0"
     fs-extra "^8.1.0"
@@ -751,10 +751,10 @@
   dependencies:
     fs-extra "^8.1.0"
 
-"@dword-design/functions@^0.7.11":
-  version "0.7.11"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.7.11.tgz#168c1b9533f3ba55c03e2fb5a81143ba56a28980"
-  integrity sha512-aVPigtLr3U20erhb+QmsQ8psk12zmSrMV6ZtECGg8xBZtv7A0mWtsV+aJZ5xC2XT7SGBD4XWSwe6SURFFkV3wQ==
+"@dword-design/functions@^0.7.13":
+  version "0.7.13"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-0.7.13.tgz#60fe1fdff1c021e5ff8e87749eceeda7be87b0d8"
+  integrity sha512-tI2Wzwol/hQ11vxdsqB97EgN0Fsul3WWbfkFwopN8yiVgtY5ySAixc4VX1gUxJLPTOe2bJBHeLGpPc9m7vie7Q==
   dependencies:
     endent "^1.3.0"
     lodash "^4.17.15"
@@ -1548,10 +1548,10 @@ chokidar@^2.0.4, chokidar@^2.1.8:
   optionalDependencies:
     fsevents "^1.2.7"
 
-chokidar@^3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.2.2.tgz#a433973350021e09f2b853a2287781022c0dc935"
-  integrity sha512-bw3pm7kZ2Wa6+jQWYP/c7bAZy3i4GwiIiMO2EeRjrE48l8vBqC/WvFhSF0xyM8fQiPEGvwMY/5bqDG7sSEOuhg==
+chokidar@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.2.3.tgz#b9270a565d14f02f6bfdd537a6a2bbf5549b8c8c"
+  integrity sha512-GtrxGuRf6bzHQmXWRepvsGnXpkQkVU+D2/9a7dAe4a7v1NhrfZOZ2oKf76M3nOs46fFYL8D+Q8JYA4GYeJ8Cjw==
   dependencies:
     anymatch "~3.1.1"
     braces "~3.0.2"
@@ -2114,10 +2114,10 @@ eslint-plugin-import@^2.18.2:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-mocha@^6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-6.2.0.tgz#16ff9ce4d5a6a35af522d5db0ce3c8946566e4c1"
-  integrity sha512-vE/+tHJVom2BkMOiwkOKcAM5YqGPk3C6gMvQ32DHihKkaXF6vmxtj3UEOg64wP3m8/Zk5V/UmQbFE5nqu1EXSg==
+eslint-plugin-mocha@^6.2.1:
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-mocha/-/eslint-plugin-mocha-6.2.1.tgz#f2ae6d82511291949e440a34b57df773cb4b5ede"
+  integrity sha512-o3Ibhpczi5MjUVpnlnrpC/+oJYGoHKB5m4bQdRnaAOeFCN3HRkqBisQ2/h0hEuCR4lPxyHP1Qzyjpna8MsOdlA==
   dependencies:
     ramda "^0.26.1"
 
@@ -5873,10 +5873,10 @@ widest-line@^1.0.0:
   dependencies:
     string-width "^1.0.1"
 
-with-local-tmp-dir@^2.0.3:
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.0.3.tgz#aaae76113a916797a4c596a5066866208ad6b0a8"
-  integrity sha512-SJLYHPnjbb59zaX7jgjHyqCFs6PzDqpWbji+ao/5ICx1tVRuKhcquGOE0PzZsgVbuGe61S7OP9OkyoywguPrbg==
+with-local-tmp-dir@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.0.4.tgz#ec7015d52b4b17264995e70c5d541979aa48c90b"
+  integrity sha512-L16z8eEDxXdBKRrKGEl3bUtLu1JwX6jPyOhDsVn0AKdosXN9NIggotxS7fdaInzEHdiKrF3rvk+ysAvN4me5uQ==
   dependencies:
     tmp-promise "^2.0.2"
 

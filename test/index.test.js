@@ -1,5 +1,5 @@
 import { spawn } from 'child-process-promise'
-import { writeFile, exists } from 'fs-extra'
+import { writeFile, exists } from 'fs'
 import { endent } from '@functions'
 import withLocalTmpDir from 'with-local-tmp-dir'
 import P from 'path'
