@@ -10,6 +10,7 @@
 Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js
 <!--/@-->
 
+<!--@installation()-->
 ## Installation
 
 ```sh
@@ -19,6 +20,7 @@ npm install --save make-cli
 # via Yarn
 yarn add make-cli
 ```
+<!--/@-->
 
 ## Usage
 

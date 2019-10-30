@@ -26,9 +26,6 @@
     "prepare": "base",
     "test": "base test"
   },
-  "mos": {
-    "installation": false
-  },
   "dependencies": {
     "commander": "^3.0.2"
   },
