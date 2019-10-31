@@ -710,12 +710,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@dword-design/base-node@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-node/-/base-node-0.3.0.tgz#8675a998f71b442f0bf12d3ba00b5026db245de2"
-  integrity sha512-w2Mbdq6m21E7X3v4B/F1iTalew90vYl6RR3/3a7uGl/0vO3Ewz8oryYZjgImUjBzqCk/L2UbOkjMfUCisLcV0g==
+"@dword-design/base-core@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-core/-/base-core-0.2.1.tgz#3f99e039a703518a192909ef3e952717ebd204df"
+  integrity sha512-KTKpgdt6JTpkNlqYAxyD45Ww7rR0phik8KCuiSxNjltVDokY9elN6Px9VrLUze4gU+qis2cLvcwmunMraYiSdA==
   dependencies:
-    "@babel/cli" "^7.6.4"
     "@babel/core" "^7.6.4"
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.4.4"
     "@babel/plugin-proposal-optional-chaining" "^7.6.0"
@@ -730,10 +729,7 @@
     babel-plugin-transform-imports "^2.0.0"
     better-node-env "^1.0.3"
     child-process-promise "^2.2.1"
-    chokidar "^3.2.3"
-    debounce "^1.2.0"
     depcheck dword-design/depcheck#fork
-    eslint "^6.6.0"
     eslint-import-resolver-babel-module "^5.1.0"
     eslint-plugin-import "^2.18.2"
     eslint-plugin-mocha "^6.2.1"
@@ -744,6 +740,20 @@
     mocha "^6.2.2"
     mos dword-design/mos#fork/mos
     nyc "^14.1.1"
+
+"@dword-design/base-node@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-node/-/base-node-0.4.1.tgz#0a9c687348c385289a7be586f0cbe3a3dc06fdf6"
+  integrity sha512-EuT08z1EvUJjpEv0SJiHBZjHSwJQ07W9pWQ8ZOEPKJNsT3hmDuSMNKTabizn5pGzX1p8nApvtQhCAu9D/Ey0vg==
+  dependencies:
+    "@babel/cli" "^7.6.4"
+    "@babel/core" "^7.6.4"
+    "@dword-design/base-core" "^0.2.1"
+    child-process-promise "^2.2.1"
+    chokidar "^3.2.3"
+    debounce "^1.2.0"
+    eslint "^6.6.0"
+    fs-extra "^8.1.0"
 
 "@dword-design/config-files@^1.0.5":
   version "1.0.5"
@@ -1906,15 +1916,12 @@ depcheck@dword-design/depcheck#fork:
     lodash "^4.17.11"
     minimatch "^3.0.2"
     node-sass-tilde-importer "^1.0.2"
-    pkg-up "^3.1.0"
     please-upgrade-node "^3.1.1"
     require-from-string "^2.0.2"
     require-package-name "^2.0.1"
     resolve "^1.10.0"
-    resolve-from "^5.0.0"
-    vue-template-compiler "^2.6.10"
-    walkdir "^0.3.2"
-    yargs "^13.2.2"
+    walkdir "0.0.12"
+    yargs "^12.0.1"
 
 deprecate@^1.0.0:
   version "1.1.1"
@@ -3841,7 +3848,7 @@ mos@dword-design/mos#fork/mos:
     mos-plugin-dependencies "^2.2.2"
     mos-plugin-ejs "^1.1.2"
     mos-plugin-example "^1.1.2"
-    mos-plugin-installation dword-design/mos-plugin-installation#fork
+    mos-plugin-installation "^1.2.2"
     mos-plugin-license "^1.2.2"
     mos-plugin-markdownscript "^2.1.2"
     mos-plugin-package-json "^2.1.2"

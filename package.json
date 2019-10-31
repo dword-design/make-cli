@@ -1,6 +1,6 @@
 {
   "name": "make-cli",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -23,14 +23,14 @@
     "optional"
   ],
   "scripts": {
-    "prepare": "base",
-    "test": "base test"
+    "prepare": "base-node prepare",
+    "test": "base-node test"
   },
   "dependencies": {
     "commander": "^3.0.2"
   },
   "devDependencies": {
-    "@dword-design/base-node": "^0.3.0",
+    "@dword-design/base-node": "^0.4.1",
     "with-local-tmp-dir": "^2.0.4"
   }
 }
