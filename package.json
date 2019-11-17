@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@dword-design/base-node": "^0.4.1",
+    "expect": "^24.9.0",
     "with-local-tmp-dir": "^2.0.4"
   }
 }
