@@ -28,7 +28,7 @@
     "test": "base-node test"
   },
   "dependencies": {
-    "commander": "^3.0.2"
+    "commander": "^4.0.0"
   },
   "devDependencies": {
     "@dword-design/base-node": "^1.0.0",
