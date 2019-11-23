@@ -24,6 +24,7 @@
   ],
   "scripts": {
     "prepare": "base-node prepare",
+    "start": "base-node start",
     "test": "base-node test"
   },
   "dependencies": {
