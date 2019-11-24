@@ -1,5 +1,3 @@
 {
-  "extends": [
-    ":preserveSemverRanges"
-  ]
+  "rangeStrategy": "update-lockfile"
 }
