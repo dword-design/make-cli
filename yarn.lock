@@ -4849,9 +4849,9 @@ window-size@^0.1.4:
   integrity sha1-+OGqHuWlPsW/FR/6CXQqatdpeHY=
 
 with-local-tmp-dir@^2.0.4:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.2.1.tgz#22a8982779db0db29d1ae3f1fe423df1d2874392"
-  integrity sha512-FU2FGFfXo8Ju9OAt0FisXOtk0Bwp+mXqV5cKekzqLefzKG9L4w2PDMzrAFkyw4YqC+7eVNEa7rXtvA4EXLAMCA==
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.2.2.tgz#0e2cd2939a7c8a46753434848045f12d74754b73"
+  integrity sha512-LMCM6mp8okYRO9oe3E+RtQqjq5fZl2/6Ru6BC9tRP/AEXRAcP+9JA9uWJWlGiWt2e17eFmQoYT6y1tf1yx6qwQ==
   dependencies:
     chdir dword-design/node-chdir#fork
     tmp-promise "^2.0.2"
