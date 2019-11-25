@@ -1,5 +1,3 @@
 language: node_js
-node_js:
-  - node
 
-after_script: "yarn add coveralls && cat ./coverage/lcov.info | coveralls"
+import: dword-design/travis-config:dist/index.yml@master
