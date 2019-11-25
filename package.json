@@ -1,11 +1,11 @@
 {
   "name": "make-cli",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "main": "dist/index.js",
   "files": [
     "dist"
   ],
-  "repository": "https://github.com/dword-design/make-cli",
+  "repository": "dword-design/make-cli",
   "author": "Sebastian Landwehr <info@dword-design.de>",
   "license": "MIT",
   "description": "Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js",
@@ -34,5 +34,13 @@
     "@dword-design/base-node": "^1.0.0",
     "expect": "^24.9.0",
     "with-local-tmp-dir": "^2.0.4"
+  },
+  "maintainers": [],
+  "contributors": [
+    "dword-design (http://www.dword-design.de)",
+    "Renovate Bot (http://renovatebot.com)"
+  ],
+  "bugs": {
+    "url": "https://github.com/dword-design/make-cli/issues"
   }
 }

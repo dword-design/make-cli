@@ -1,26 +1,40 @@
-<!--@h1([pkg.name])-->
-# make-cli
-<!--/@-->
+<!-- TITLE/ -->
 
-<!--@shields('npm', 'travis', 'coveralls', 'deps')-->
-[![npm version](https://img.shields.io/npm/v/make-cli.svg)](https://www.npmjs.com/package/make-cli) [![Build Status](https://img.shields.io/travis/dword-design/make-cli/master.svg)](https://travis-ci.org/dword-design/make-cli) [![Coverage Status](https://img.shields.io/coveralls/dword-design/make-cli/master.svg)](https://coveralls.io/r/dword-design/make-cli?branch=master) [![dependency status](https://img.shields.io/david/dword-design/make-cli.svg)](https://david-dm.org/dword-design/make-cli)
-<!--/@-->
+<h1>make-cli</h1>
 
-<!--@pkg.description-->
+<!-- /TITLE -->
+
+
+<!-- BADGES/ -->
+
+<span class="badge-npmversion"><a href="https://npmjs.org/package/make-cli" title="View this project on NPM"><img src="https://img.shields.io/npm/v/make-cli.svg" alt="NPM version" /></a></span>
+<span class="badge-travisci"><a href="http://travis-ci.org/dword-design/make-cli" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/dword-design/make-cli/master.svg" alt="Travis CI Build Status" /></a></span>
+<span class="badge-coveralls"><a href="https://coveralls.io/r/dword-design/make-cli" title="View this project's coverage on Coveralls"><img src="https://img.shields.io/coveralls/dword-design/make-cli.svg" alt="Coveralls Coverage Status" /></a></span>
+<span class="badge-daviddm"><a href="https://david-dm.org/dword-design/make-cli" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/dword-design/make-cli.svg" alt="Dependency Status" /></a></span>
+<span class="badge-shields"><a href="https://img.shields.io/badge/renovate-enabled-brightgreen.svg"><img src="https://img.shields.io/badge/renovate-enabled-brightgreen.svg" /></a></span>
+
+<!-- /BADGES -->
+
+
+<!-- DESCRIPTION/ -->
+
 Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js
-<!--/@-->
 
-<!--@installation()-->
-## Installation
+<!-- /DESCRIPTION -->
 
-```sh
-# via NPM
-npm install --save make-cli
 
-# via Yarn
-yarn add make-cli
-```
-<!--/@-->
+<!-- INSTALL/ -->
+
+<h2>Install</h2>
+
+<a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
+<ul>
+<li>Install: <code>npm install --save make-cli</code></li>
+<li>Require: <code>require('make-cli')</code></li>
+</ul>
+
+<!-- /INSTALL -->
+
 
 ## Usage
 
@@ -83,8 +97,16 @@ $ my-cli --version
 
 For more information see the [Commander.js](https://www.npmjs.com/package/commander) website.
 
-<!--@license()-->
-## License
+<!-- LICENSE/ -->
 
-MIT © Sebastian Landwehr
-<!--/@-->
+<h2>License</h2>
+
+Unless stated otherwise all works are:
+
+<ul><li>Copyright &copy; Sebastian Landwehr</li></ul>
+
+and licensed under:
+
+<ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
+
+<!-- /LICENSE -->
