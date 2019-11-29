@@ -749,9 +749,9 @@
     babel-plugin-transform-imports "^2.0.0"
 
 "@dword-design/base-node@^1.0.0":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@dword-design/base-node/-/base-node-1.0.2.tgz#0e6c9f1e2ffd5b2c7ca8c7cbe1519f27b5757639"
-  integrity sha512-1Pc9+a2yI/QH46STwsBflw/7uspFr39p7Z/8nRni2xaX5BMzWPsas+dQW6R4xUqfu4365lVwqsNkqnS58ZrvCA==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/base-node/-/base-node-1.0.3.tgz#c5de7b62ff0a83b347401cb695dfe5c46e4f3587"
+  integrity sha512-K96YOCNVzNHkX02tYOV70gbwj9PHfzAyvvNB6ORCrTP/3S5CCpwrfP2L3ygSppMW1SZTGF686/lozLFXdSiFRg==
   dependencies:
     "@dword-design/base" "^1.0.0"
 
@@ -784,9 +784,9 @@
     safe-require "^1.0.3"
 
 "@dword-design/eslint-config@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.0.1.tgz#1e489843ccfca8dfaa266323dd3a1aba4bb7c59e"
-  integrity sha512-D6P5a1vTmv8QR9sJrRaf/sqQuhB3k/bYgXMdcZ0svGXyQ3ZKbUVGarptizg7cBs1X0xCDWdn+g8dpspt0NIchQ==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/eslint-config/-/eslint-config-1.0.2.tgz#c773c71a3c453ba56652b9656e228b001e81bc40"
+  integrity sha512-RNqAkesxxaBliYjLWTO8BhacmbFrR3KfniLZr/yR8rUECw87JpE3GQ01EhGY3/MnfT/EmaqHvukrsZszaatqXg==
   dependencies:
     "@dword-design/aliases" "^1.0.0"
     "@dword-design/babel-config" "^1.0.0"
@@ -2287,9 +2287,9 @@ get-package-name@^1.0.0:
   integrity sha512-s3FZaOiab+vUi9OZGjnCREYUJIsRh4UXqTZZAegXrG8k4oHq5B8NYhwE67+jxw1IbbsUiNUZI/2mEHxDaXTW+A==
 
 get-projectz-readme-section-regex@^1.0.0:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-1.0.1.tgz#4cd987bdd9fc9c82e5d61af16ef6b9c4e2c0e930"
-  integrity sha512-hn4wYSk+5HcIVhNXN3wlrikmPq0TijhrYy0EZ7ESU9+KQJSe+iN2utPlGKprCWOBJjxOaFWxpj/COtNgplCpvw==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-1.0.2.tgz#71d833699ed477bae232d405a2427749d359adcf"
+  integrity sha512-cpNpgBn0esGJIMUOfAJyxbIdhd5Tt21Mahb8OBptep5JeY3kGL6fESI0abBlEFkgxBDOwZ24hyBTtfhPy26iYw==
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
