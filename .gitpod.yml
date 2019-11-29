@@ -1,2 +1,6 @@
 tasks:
   - init: yarn
+
+vscode:
+  extensions:
+    - karlito40.fix-irregular-whitespace@0.0.3:8jjyZYuYF6yW6nwsAiulrg==
