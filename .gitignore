@@ -1,7 +1,9 @@
 .DS_Store
-.editorconfig
-.nyc_output
-.vscode
-coverage
-dist
-node_modules
+/.babelrc
+/.editorconfig
+/.eslintrc.json
+/.nyc_output
+/.vscode
+/coverage
+/dist
+/node_modules

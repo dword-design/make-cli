@@ -1,3 +1,6 @@
 {
-  "rangeStrategy": "update-lockfile"
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "at any time"
+  }
 }
