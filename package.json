@@ -1,6 +1,6 @@
 {
   "name": "make-cli",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js",
   "keywords": [
     "argument",
