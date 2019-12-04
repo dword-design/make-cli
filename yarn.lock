@@ -730,9 +730,9 @@
     to-fast-properties "^2.0.0"
 
 "@dword-design/aliases@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/aliases/-/aliases-1.1.0.tgz#a0be4e20c9dfb287346d5c514bdd4ef55165356f"
-  integrity sha512-m4t4M99r/yxjGrJFoQdzX02xcPFBmtVFumJ3wd6Or5CwPILTIprEttdClQ5Ar93JtM8ms44Ccgxg/Xdd+grJXw==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/aliases/-/aliases-1.0.2.tgz#d45bca5bf752ad0d643729b939665a739c0c0ffa"
+  integrity sha512-ebxpP2DKN++v9+hpbsKcAjEck50gLq0oy8h0VrnFG1m3fGB4V7aV+8M20CY+IJHJcwa1SLXQxqR3Jy3PNRwv6w==
   dependencies:
     "@dword-design/functions" "^2.0.0"
     better-node-env "^1.0.3"
@@ -763,9 +763,9 @@
     "@dword-design/base" "^3.0.0"
 
 "@dword-design/base@^3.0.0":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@dword-design/base/-/base-3.0.2.tgz#6d0d8e7b987d6d787d0b219cb37106bf8367ab83"
-  integrity sha512-n6Unuc0lTJ+D8e6QLJ7JT0+sqiGL51xf0kdqycRNtQig/6Rf1vRbWJDRzSL8KVabh/shLU9u8wIT68nKdNW+nw==
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/base/-/base-3.0.3.tgz#84241f7fe04a92aedf3ecf25ee1a6cd732595133"
+  integrity sha512-0SFFP852LVwdNq2n+/d4TiZjzCoa+a+Vf0q0k+M0TOdEe7N0TkiO0IGpaxaBg8CJvOF1G1tmUy8tf4DURZuzaA==
   dependencies:
     "@babel/cli" "^7.6.4"
     "@babel/core" "^7.6.4"
@@ -779,7 +779,6 @@
     debounce "^1.2.0"
     depcheck dword-design/depcheck#fork
     eslint "^6.6.0"
-    expect "^24.9.0"
     get-projectz-readme-section-regex "^1.0.0"
     glob-promise "^3.4.0"
     install-self dword-design/install-self#fork
