@@ -806,9 +806,9 @@
     safe-require "^1.0.3"
 
 "@dword-design/functions@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-2.0.0.tgz#357e0b71d73b3b8b2bc698b295b76d9b58abc610"
-  integrity sha512-oV/d3XntQyC8xfrP2znzAmnAMcW1/q1t6UmJ6ufunoRtzxZUgkAjnw8dSLKSKqN4lTuHg14yNMXGgm7DipazWQ==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-2.0.1.tgz#d467f61d37c66ed9cf65ba65245f329eee0fdb18"
+  integrity sha512-pe4NA4J/GWzujofAuax4Sct7x6r42qqJHgq2lBKYvxG3MUucFcS/9V8/ZTbat/gQxSTB0Z0mv6bMGobUQ00qGA==
   dependencies:
     endent "^1.3.0"
     lodash "^4.17.15"
