@@ -742,9 +742,9 @@
     read-all-up "^1.0.1"
 
 "@dword-design/babel-config@^1.0.0":
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.0.3.tgz#6efa4a87f283bc19e17539cef70dc779cccc46bc"
-  integrity sha512-C93QAXFLwjGVewy40+jvTfMfYTxjwRqJx/umYaN3pr6Dac2XEzqhfT1NMVIwxi9aZLfqYml6IpBidIBfx4lrxg==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.0.4.tgz#ed1e452f58d9b48db3f1f9e7a2288f5f87f3eb1c"
+  integrity sha512-soo9OrAPxrxfjiuO3LlZWBs/ThsamHnjGW/c4ETjJdTia4+yydw9wzQAIELrwRDM6mCI6/Dpr+gq0vTyvgo1WA==
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.4.4"
     "@babel/plugin-proposal-optional-chaining" "^7.6.0"
