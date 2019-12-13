@@ -1,4 +1,4 @@
-import { endent } from '@functions'
+import { endent } from '@dword-design/functions'
 import runCli from './run-cli'
 
 export default () => runCli({
