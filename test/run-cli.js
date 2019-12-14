@@ -1,8 +1,8 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import expect from 'expect'
-import { outputFile } from 'fs'
-import { endent } from '@functions'
-import { spawn } from 'child_process'
+import { outputFile } from 'fs-extra'
+import { endent } from '@dword-design/functions'
+import { spawn } from 'child-process-promise'
 import { resolve } from 'path'
 
 export default async ({ optionsString: _optionsString, arguments: args = [], check: _check }) => withLocalTmpDir(__dirname, async () => {

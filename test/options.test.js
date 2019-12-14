@@ -1,6 +1,6 @@
-import { endent } from '@functions'
+import { endent } from '@dword-design/functions'
 import expect from 'expect'
-import { exists } from 'fs'
+import { exists } from 'fs-extra'
 import runCli from './run-cli'
 
 export default () => runCli({
