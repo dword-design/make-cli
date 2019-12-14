@@ -730,17 +730,19 @@
     to-fast-properties "^2.0.0"
 
 "@dword-design/babel-config@^1.0.0", "@dword-design/babel-config@^1.0.4":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.0.5.tgz#9bc3ac2a78c0c96e4aa694e45f677394565f8276"
-  integrity sha512-4K4GDe4+EnQAzOmUQckIFjgCKVczKqZg95awn5PkrmYrHUdiny8MC3aBZGE/X2eWU2MNK3mWGh8jrfgj2cvSDg==
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@dword-design/babel-config/-/babel-config-1.0.8.tgz#ac0d496020de7fb24c6e91b4a1f7ba9d91e7076c"
+  integrity sha512-AFj28z0jB9DvwWcu3cjIQ22YlGue6dTOLf02r/oRXjBwql1Q7q3cSRwCPOXQ9qRY5jQDSGSirQ5djnihCYuhBA==
   dependencies:
     "@babel/plugin-proposal-nullish-coalescing-operator" "^7.4.4"
     "@babel/plugin-proposal-optional-chaining" "^7.6.0"
     "@babel/plugin-proposal-pipeline-operator" "^7.5.0"
     "@babel/preset-env" "^7.6.3"
+    "@dword-design/functions" "^2.2.2"
     babel-plugin-add-module-exports "^1.0.2"
     babel-plugin-transform-imports "^2.0.0"
     get-package-name "^1.0.0"
+    safe-require "^1.0.3"
 
 "@dword-design/base-config-node@^1.0.0":
   version "1.3.3"
@@ -761,9 +763,9 @@
     get-package-name "^1.0.0"
 
 "@dword-design/base@^3.4.4":
-  version "3.4.4"
-  resolved "https://registry.yarnpkg.com/@dword-design/base/-/base-3.4.4.tgz#ff88ceb46e37e98d1ca94a74ed07d4a83632e4f5"
-  integrity sha512-im1AGF/GKIpVSyS78Cf8pRDZFfcKaEtIL+t6O4pT50iZrZG3krrSVux8Hkw9sCS3qXweiv9ZLttft5dgJgab3g==
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/base/-/base-3.5.0.tgz#7fb810b999a805f0a45bef767e2d0512ed1a59f9"
+  integrity sha512-iAj+moXbp3aiib5gsUhzYXCJ8jzCUwSfKvY67bZ+lu8ZMQqPZ+HroT1E8KpwTfOd6rYpYO4UGeCevvD+CEV2NQ==
   dependencies:
     "@babel/cli" "^7.6.4"
     "@babel/core" "^7.6.4"
@@ -805,26 +807,26 @@
     get-package-name "^1.0.0"
 
 "@dword-design/functions@^2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-2.2.2.tgz#00204959eec6dbe79dfe1efe420cc313f6bfc903"
-  integrity sha512-dI/FKp6T913CHealcQQofsfE+b7VUNxtFfbk5jr1qMiHVAVwUV39yTrUTaMdMjK2waAJC8DwV/VFAZsPDFNrsQ==
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-2.2.3.tgz#483fedd2a0c379cc4dbba7f056401269305f6e4e"
+  integrity sha512-E0AAcESAASVK4tluGgIXzRloAMtnQdqat/L91Oyzv/HM/HmE/IuK/iM01+9D8EeHTJuu/BmbEyhm84Ly03kqJA==
   dependencies:
     endent "^1.3.0"
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
 "@dword-design/json-schema-package@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@dword-design/json-schema-package/-/json-schema-package-1.1.0.tgz#e15370ac6bc9b940823a081cb8857fbbbfed5972"
-  integrity sha512-7U1PlrrGXO9QScuhOvLKMvvrPAIrWzCPwMIjsNghL/uZKElvwwNDTdDYWGNnz47NWmbexGLYiIQRBO1TqvpcBA==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/json-schema-package/-/json-schema-package-1.1.1.tgz#8d57f3cb54d5835b62f9e214bd55d585ac4b44db"
+  integrity sha512-CUxNV2tCDpfc8OXyfCYzAVAh5WUyQb4UJRfLN9X9jgRnXjM67x2nNxz39bE98adFoPIQttpBnFKeQYe+mvA6jQ==
   dependencies:
     package-name-regex "^1.0.1"
     stable-version-regex "^1.0.1"
 
 "@dword-design/test-aliases@^1.0.0":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@dword-design/test-aliases/-/test-aliases-1.0.1.tgz#e489fe018905c9b17c98aabe864b96d103e55935"
-  integrity sha512-YKzlezh5nP2lrxFL4+mSRdvMppJs/NpjevE6ystWz4PD88sD8WeSvOO9fuSc0FyaUI/jFjNsBE7CLqp3x/NH7g==
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@dword-design/test-aliases/-/test-aliases-1.0.2.tgz#38a4d45e597e9d252a9913bb8b1bac783ffc1e0d"
+  integrity sha512-juvN97z3B4T7aZtLFNqT60sLTdRlFejV4uiw8uREd+LGnI9v8a9SaPZoD+qm32IwioiZqdj94/7BYB4fvAJ2sA==
   dependencies:
     "@dword-design/functions" "^2.2.2"
     read-all-up "^1.0.1"
@@ -2400,9 +2402,11 @@ get-package-name@^1.0.0:
   integrity sha512-s3FZaOiab+vUi9OZGjnCREYUJIsRh4UXqTZZAegXrG8k4oHq5B8NYhwE67+jxw1IbbsUiNUZI/2mEHxDaXTW+A==
 
 get-projectz-readme-section-regex@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-1.0.3.tgz#e364dbf3867814aa8298ac1b9762d725eb3fb94c"
-  integrity sha512-QXrCXiG8071s0ygmhTX32OWRChbqU2xdZckc3+Jq0dFyVojao2RcrCalYdEF1MZcyL1pSU2Ekqhfm1qDmBMe1g==
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/get-projectz-readme-section-regex/-/get-projectz-readme-section-regex-1.0.4.tgz#ae02a8e1d85feacc17eb6b233617d1bb76a3080a"
+  integrity sha512-Z61URwY8qP1DOv970A5KxojSwCOQj6IMbKIkAmbF8VW7FgdTjOn4rOJXwIgKOkRGU7GiJNQM+AOP21howWwwJg==
+  dependencies:
+    "@dword-design/functions" "^2.2.2"
 
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
@@ -3213,9 +3217,9 @@ lru-cache@^4.0.1, lru-cache@^4.1.5:
     yallist "^2.1.2"
 
 make-cli@^1.0.12, make-cli@^1.0.9:
-  version "1.0.12"
-  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.12.tgz#61feea4bc55ab4c106d4092935b83debad2938f7"
-  integrity sha512-5z2zQ3iT7elwP5zBXEGXArPNo/AFbsvSqJZztHFNzy0wI4tKjUCK8gfGsKW4lxCrc4tWeHxeoKLyvJ7bJMN1qw==
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/make-cli/-/make-cli-1.0.13.tgz#aefa47cc6e7dc308defe1f69b66a1a19e237fe7c"
+  integrity sha512-FHRnr9FCLpVeQQvYtTO4BNM+5LDmMrsMYFzAFwhEJGvltgjaoIH/YTO2hJYCX4Yy3eDWPgzDzEMMnR9s5IFkVg==
   dependencies:
     commander "^4.0.0"
 
@@ -3333,11 +3337,13 @@ mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
     minimist "0.0.8"
 
 mocha-per-file@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-2.0.0.tgz#26fd045ba2e2434ad27b3dbfe6ed40e247ea3905"
-  integrity sha512-sskDj6bxWY2+X53ZXhoqqOE2v+K78qrTs45yney5WdZDE8q44IunVKwjTLVJmsP/JbGXvFUNRBw+GV6fxvovhg==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/mocha-per-file/-/mocha-per-file-2.0.1.tgz#a0c6e57a6f1de3d4f9aca431075187fc0baae28a"
+  integrity sha512-68onXNEy7CDYOyNc5cC0EJlpBbZdzGzq1aceDGoTO5JC7zkQj1EpbWpapNWpNDT4iNRGaIWX1MG07BjGdXTRoQ==
   dependencies:
     chdir dword-design/node-chdir#fork
+    child-process-promise "^2.2.1"
+    fs-extra "^8.1.0"
     glob "^7.1.6"
     make-cli "^1.0.12"
     minimatch "^3.0.4"
@@ -4326,6 +4332,11 @@ safe-regex@^1.1.0:
   integrity sha1-QKNmnzsHfR6UPURinhV91IAjvy4=
   dependencies:
     ret "~0.1.10"
+
+safe-require@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/safe-require/-/safe-require-1.0.3.tgz#6ec319ed10209b1d12c7a1449b79d46d7f4f914b"
+  integrity sha1-bsMZ7RAgmx0Sx6FEm3nUbX9PkUs=
 
 safefs@^5.4.0:
   version "5.5.0"
