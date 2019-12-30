@@ -34,7 +34,7 @@
     "commander": "^4.0.0"
   },
   "devDependencies": {
-    "@dword-design/base": "^3.4.4",
+    "@dword-design/base": "^4.0.0",
     "@dword-design/functions": "^2.2.2",
     "child-process-promise": "^2.2.1",
     "expect": "^24.9.0",
