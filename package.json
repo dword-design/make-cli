@@ -15,9 +15,6 @@
     "option",
     "optional"
   ],
-  "bugs": {
-    "url": "https://github.com/dword-design/make-cli/issues"
-  },
   "repository": "dword-design/make-cli",
   "license": "MIT",
   "author": "Sebastian Landwehr <info@dword-design.de>",
@@ -34,16 +31,11 @@
     "commander": "^4.0.0"
   },
   "devDependencies": {
-    "@dword-design/base": "^3.4.4",
+    "@dword-design/base": "^4.0.0",
     "@dword-design/functions": "^2.2.2",
     "child-process-promise": "^2.2.1",
     "expect": "^24.9.0",
     "fs-extra": "^8.1.0",
     "with-local-tmp-dir": "^2.0.4"
-  },
-  "contributors": [
-    "dword-design (http://www.dword-design.de)",
-    "Renovate Bot (http://renovatebot.com)"
-  ],
-  "maintainers": []
+  }
 }

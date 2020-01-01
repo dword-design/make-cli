@@ -30,7 +30,8 @@ Build command line tools declaratively with a configuration object and a single 
 <a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
 <ul>
 <li>Install: <code>npm install --save make-cli</code></li>
-<li>Require: <code>require('make-cli')</code></li>
+<li>Import: <code>import * as pkg from ('make-cli')</code></li>
+<li>Require: <code>const pkg = require('make-cli')</code></li>
 </ul>
 
 <!-- /INSTALL -->
