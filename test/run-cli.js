@@ -3,7 +3,7 @@ import expect from 'expect'
 import { outputFile } from 'fs-extra'
 import { endent } from '@dword-design/functions'
 import { spawn } from 'child-process-promise'
-import { resolve } from 'path'
+import P from 'path'
 
 export default async ({ optionsString: _optionsString, arguments: args = [], check: _check }) => withLocalTmpDir(__dirname, async () => {
 
@@ -24,7 +24,7 @@ export default async ({ optionsString: _optionsString, arguments: args = [], che
   )
 
   try {
-    const { stdout } = await spawn(resolve('cli.js'), args, { capture: ['stdout', 'stderr'] })
+    const { stdout } = await spawn(P.resolve('cli.js'), args, { capture: ['stdout', 'stderr'] })
 
     await check(stdout)
 
