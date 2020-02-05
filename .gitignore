@@ -1,5 +1,6 @@
 .DS_Store
 /.editorconfig
+/.env
 /.eslintrc.json
 /.nyc_output
 /.vscode

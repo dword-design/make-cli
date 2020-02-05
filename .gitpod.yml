@@ -1,5 +1,5 @@
 tasks:
-  - init: yarn && yarn prepublishOnly
+  - init: yarn
 
 vscode:
   extensions:

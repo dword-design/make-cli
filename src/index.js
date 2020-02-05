@@ -32,8 +32,8 @@ export default ({ version, name, usage, arguments: args, options, action, comman
         .command(`${name}${args !== '' ? ` ${args}` : ''}`)
         .description(description)
         .action(handler),
-      options
-    )
+      options,
+    ),
   )
 
   if (defaultCommandName !== undefined && process.argv.length <= 2) {
