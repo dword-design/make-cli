@@ -35,7 +35,6 @@
     "@dword-design/base": "^5.0.0",
     "@dword-design/functions": "^2.2.2",
     "child-process-promise": "^2.2.1",
-    "expect": "^24.9.0",
     "fs-extra": "^8.1.0",
     "with-local-tmp-dir": "^2.0.4"
   }
