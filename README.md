@@ -1,41 +1,34 @@
 <!-- TITLE/ -->
-
-<h1>make-cli</h1>
-
+# make-cli
 <!-- /TITLE -->
 
-
 <!-- BADGES/ -->
+[![NPM version](https://img.shields.io/npm/v/make-cli.svg)](https://npmjs.org/package/make-cli)
+![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
 
-<span class="badge-npmversion"><a href="https://npmjs.org/package/make-cli" title="View this project on NPM"><img src="https://img.shields.io/npm/v/make-cli.svg" alt="NPM version" /></a></span>
-<span class="badge-travisci"><a href="http://travis-ci.org/dword-design/make-cli" title="Check this project's build status on TravisCI"><img src="https://img.shields.io/travis/dword-design/make-cli/master.svg" alt="Travis CI Build Status" /></a></span>
-<span class="badge-coveralls"><a href="https://coveralls.io/r/dword-design/make-cli" title="View this project's coverage on Coveralls"><img src="https://img.shields.io/coveralls/dword-design/make-cli.svg" alt="Coveralls Coverage Status" /></a></span>
-<span class="badge-daviddm"><a href="https://david-dm.org/dword-design/make-cli" title="View the status of this project's dependencies on DavidDM"><img src="https://img.shields.io/david/dword-design/make-cli.svg" alt="Dependency Status" /></a></span>
-<span class="badge-shields"><a href="https://img.shields.io/badge/renovate-enabled-brightgreen.svg"><img src="https://img.shields.io/badge/renovate-enabled-brightgreen.svg" /></a></span>
+[![Build status](https://img.shields.io/github/workflow/status/dword-design/make-cli/build)](https://github.com/dword-design/make-cli/actions)
+[![Coverage status](https://img.shields.io/coveralls/dword-design/make-cli)](https://coveralls.io/github/dword-design/make-cli)
+[![Dependency status](https://img.shields.io/david/dword-design/make-cli)](https://david-dm.org/dword-design/make-cli)
+![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen)
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/dword-design/make-cli)
 <!-- /BADGES -->
 
-
 <!-- DESCRIPTION/ -->
-
 Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js
-
 <!-- /DESCRIPTION -->
 
-
 <!-- INSTALL/ -->
+# Install
 
-<h2>Install</h2>
+```bash
+# NPM
+$ npm install make-cli
 
-<a href="https://npmjs.com" title="npm is a package manager for javascript"><h3>npm</h3></a>
-<ul>
-<li>Install: <code>npm install --save make-cli</code></li>
-<li>Import: <code>import * as pkg from ('make-cli')</code></li>
-<li>Require: <code>const pkg = require('make-cli')</code></li>
-</ul>
-
+# Yarn
+$ yarn add make-cli
+```
 <!-- /INSTALL -->
-
 
 ## Usage
 
@@ -99,15 +92,13 @@ $ my-cli --version
 For more information see the [Commander.js](https://www.npmjs.com/package/commander) website.
 
 <!-- LICENSE/ -->
-
-<h2>License</h2>
+# License
 
 Unless stated otherwise all works are:
 
-<ul><li>Copyright &copy; Sebastian Landwehr</li></ul>
+Copyright &copy; Sebastian Landwehr <info@dword-design.de>
 
 and licensed under:
 
-<ul><li><a href="http://spdx.org/licenses/MIT.html">MIT License</a></li></ul>
-
+[MIT License](https://opensource.org/licenses/MIT)
 <!-- /LICENSE -->

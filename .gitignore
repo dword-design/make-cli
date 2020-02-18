@@ -1,8 +1,10 @@
 .DS_Store
+/.cz.json
 /.editorconfig
 /.env
 /.eslintrc.json
 /.nyc_output
+/.releaserc.json
 /.vscode
 /coverage
 /dist

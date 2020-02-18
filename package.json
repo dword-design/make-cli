@@ -23,18 +23,20 @@
     "dist"
   ],
   "scripts": {
+    "commit": "base commit",
     "depgraph": "base depgraph",
     "prepare": "base prepare",
     "prepublishOnly": "base prepublishOnly",
+    "release": "base release",
     "test": "base test"
   },
   "dependencies": {
     "commander": "^4.0.0"
   },
   "devDependencies": {
-    "@dword-design/base": "^5.0.0",
+    "@dword-design/base": "^6.0.0",
     "@dword-design/functions": "^2.2.2",
-    "child-process-promise": "^2.2.1",
+    "execa": "^4.0.0",
     "fs-extra": "^8.1.0",
     "with-local-tmp-dir": "^2.0.4"
   }
