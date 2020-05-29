@@ -5,7 +5,6 @@
 <!-- BADGES/ -->
 [![NPM version](https://img.shields.io/npm/v/make-cli.svg)](https://npmjs.org/package/make-cli)
 ![Linux macOS Windows compatible](https://img.shields.io/badge/os-linux%20%7C%C2%A0macos%20%7C%C2%A0windows-blue)
-
 [![Build status](https://img.shields.io/github/workflow/status/dword-design/make-cli/build)](https://github.com/dword-design/make-cli/actions)
 [![Coverage status](https://img.shields.io/coveralls/dword-design/make-cli)](https://coveralls.io/github/dword-design/make-cli)
 [![Dependency status](https://img.shields.io/david/dword-design/make-cli)](https://david-dm.org/dword-design/make-cli)
@@ -19,7 +18,7 @@ Build command line tools declaratively with a configuration object and a single 
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
-# Install
+## Install
 
 ```bash
 # NPM
@@ -92,7 +91,7 @@ $ my-cli --version
 For more information see the [Commander.js](https://www.npmjs.com/package/commander) website.
 
 <!-- LICENSE/ -->
-# License
+## License
 
 Unless stated otherwise all works are:
 

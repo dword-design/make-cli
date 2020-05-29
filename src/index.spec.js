@@ -1,16 +1,26 @@
 import withLocalTmpDir from 'with-local-tmp-dir'
 import { outputFile, exists } from 'fs-extra'
-import { endent } from '@dword-design/functions'
+import { endent, mapValues } from '@dword-design/functions'
 import execa from 'execa'
 
-const runCli = async ({ optionsString: _optionsString, arguments: args = [], check: _check }) => withLocalTmpDir(async () => {
+const runTest = ({
+  optionsString: _optionsString,
+  arguments: args = [],
+  test: _test,
+}) => () =>
+  withLocalTmpDir(async () => {
+    const optionsString =
+      typeof _optionsString === 'function'
+        ? _optionsString
+        : () => _optionsString
+    const test =
+      typeof _test === 'function'
+        ? _test
+        : stdout => expect(stdout).toEqual(_test)
 
-  const optionsString = typeof _optionsString === 'function' ? _optionsString : () => _optionsString
-  const check = typeof _check === 'function' ? _check : stdout => expect(stdout).toEqual(_check)
-
-  await outputFile(
-    'cli.js',
-    endent`
+    await outputFile(
+      'cli.js',
+      endent`
       #!/usr/bin/env node
 
       const makeCli = require('make-cli')
@@ -18,53 +28,52 @@ const runCli = async ({ optionsString: _optionsString, arguments: args = [], che
 
       makeCli(${optionsString()})
     `,
-    { mode: '755' },
-  )
+      { mode: '755' }
+    )
 
-  try {
-    const { all } = await execa('./cli.js', args, { all: true })
+    try {
+      const { all } = await execa('./cli.js', args, { all: true })
 
-    await check(all)
-
-  } catch (error) {
-    if (error.all !== undefined) {
-      console.error(error.all)
+      await test(all)
+    } catch (error) {
+      if (error.all !== undefined) {
+        console.error(error.all)
+      }
+      throw error
     }
-    throw error
-  }
-})
+  })
 
 export default {
-  action: () => runCli({
-    optionsString: '{ action: () => console.log(\'foo\') }',
-    check: 'foo',
-  }),
-  'arguments: mandatory': () => runCli({
+  action: {
+    optionsString: "{ action: () => console.log('foo') }",
+    test: 'foo',
+  },
+  'arguments: mandatory': {
     optionsString: endent`{
       arguments: '<first> <second>',
       action: (first, second) => { console.log(first); console.log(second) },
     }`,
     arguments: ['foo', 'bar'],
-    check: 'foo\nbar',
-  }),
-  'arguments: optional not set': () => runCli({
+    test: 'foo\nbar',
+  },
+  'arguments: optional not set': {
     optionsString: endent`{
       arguments: '[arg]',
       action: arg => console.log(arg),
     }`,
-    check: 'undefined',
-  }),
-  'arguments: optional set': () => runCli({
+    test: 'undefined',
+  },
+  'arguments: optional set': {
     optionsString: endent`{
       arguments: '[arg]',
       action: arg => console.log(arg),
     }`,
     arguments: ['foo'],
-    check: 'foo',
-  }),
-  'commands: arguments': () => runCli({
+    test: 'foo',
+  },
+  'commands: arguments': {
     optionsString: () => {
-      const outputFileExpression = 'outputFile(`${arg}.txt`, \'\')'
+      const outputFileExpression = "outputFile(`${arg}.txt`, '')"
       return endent`{
         commands: [
           {
@@ -76,9 +85,9 @@ export default {
       }`
     },
     arguments: ['build', 'foo'],
-    check: async () => expect(await exists('foo.txt')).toBeTruthy(),
-  }),
-  'commands: default': () => runCli({
+    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+  },
+  'commands: default': {
     optionsString: endent`{
       commands: [
         {
@@ -88,11 +97,11 @@ export default {
       ],
       defaultCommandName: 'build',
     }`,
-    check: 'foo',
-  }),
-  'commands: options': () => runCli({
+    test: 'foo',
+  },
+  'commands: options': {
     optionsString: () => {
-      const outputFileExpression = 'outputFile(`${value}.txt`, \'\')'
+      const outputFileExpression = "outputFile(`${value}.txt`, '')"
       return endent`{
         commands: [
           {
@@ -106,9 +115,9 @@ export default {
       }`
     },
     arguments: ['build', '--value', 'foo'],
-    check: async () => expect(await exists('foo.txt')).toBeTruthy(),
-  }),
-  'commands: valid': () => runCli({
+    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+  },
+  'commands: valid': {
     optionsString: () => endent`{
       commands: [
         {
@@ -118,9 +127,9 @@ export default {
       ],
     }`,
     arguments: ['build'],
-    check: async () => expect(await exists('foo.txt')).toBeTruthy(),
-  }),
-  help: () => runCli({
+    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+  },
+  help: {
     optionsString: endent`{
       version: '0.1.0',
       name: 'the name',
@@ -133,11 +142,12 @@ export default {
       ],
     }`,
     arguments: ['--help'],
-    check: 'Usage: the name the usage\n\nOptions:\n  -V, --version  output the version number\n  -h, --help     output usage information\n\nCommands:\n  build          Builds the app',
-  }),
-  options: () => runCli({
+    test:
+      'Usage: the name the usage\n\nOptions:\n  -V, --version  output the version number\n  -h, --help     output usage information\n\nCommands:\n  build          Builds the app',
+  },
+  options: {
     optionsString: () => {
-      const outputFileExpression = 'outputFile(`${value}.txt`, \'\')'
+      const outputFileExpression = "outputFile(`${value}.txt`, '')"
       return endent`{
         options: [
           { name: '--value <value>' },
@@ -146,11 +156,11 @@ export default {
       }`
     },
     arguments: ['--value', 'foo'],
-    check: async () => expect(await exists('foo.txt')).toBeTruthy(),
-  }),
-  version: () => runCli({
-    optionsString: '{ version: \'0.1.0\' }',
+    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+  },
+  version: {
+    optionsString: "{ version: '0.1.0' }",
     arguments: ['--version'],
-    check: '0.1.0',
-  }),
-}
+    test: '0.1.0',
+  },
+} |> mapValues(runTest)

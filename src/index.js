@@ -1,7 +1,20 @@
-const applyOptions = (program, options = []) => options.forEach(({ name, description, defaultValue }) => program.option(name, description, defaultValue))
+import { compact, join } from '@dword-design/functions'
 
-export default ({ version, name, usage, arguments: args, options, action, commands = [], defaultCommandName } = {}) => {
+const applyOptions = (program, options = []) =>
+  options.forEach(({ name, description, defaultValue }) =>
+    program.option(name, description, defaultValue)
+  )
 
+export default ({
+  version,
+  name,
+  usage,
+  arguments: args,
+  options,
+  action,
+  commands = [],
+  defaultCommandName,
+} = {}) => {
   const program = require('commander')
 
   if (version !== undefined) {
@@ -27,22 +40,30 @@ export default ({ version, name, usage, arguments: args, options, action, comman
   }
 
   commands.forEach(
-    ({ name, arguments: args, description, options, handler }) => applyOptions(
-      program
-        .command(`${name}${args !== '' ? ` ${args}` : ''}`)
-        .description(description)
-        .action(handler),
-      options,
-    ),
+    ({
+      name: commandName,
+      arguments: commandArgs,
+      description,
+      options: commandOptions,
+      handler,
+    }) =>
+      applyOptions(
+        program
+          .command([commandName, commandArgs] |> compact |> join(' '))
+          .description(description)
+          .action(handler),
+        commandOptions
+      )
   )
 
   if (defaultCommandName !== undefined && process.argv.length <= 2) {
-    return commands.find(({ name }) => name === defaultCommandName).handler()
-  } else {
-    if (commands.length > 0) {
-      program.on('command:*', () => program.help())
-    }
-
-    return program.parse(process.argv)
+    return commands
+      .find(command => command.name === defaultCommandName)
+      .handler()
   }
+  if (commands.length > 0) {
+    program.on('command:*', () => program.help())
+  }
+
+  return program.parse(process.argv)
 }

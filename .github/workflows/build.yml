@@ -1,29 +1,55 @@
 name: build
-
 on:
   push:
     branches:
-      - '**'
-
+      - "**"
 jobs:
+  cancel-existing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: rokroskar/workflow-run-cleanup-action@v0.2.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   test:
-    runs-on: ${{ matrix.os }}
+    needs: cancel-existing
     strategy:
       matrix:
-        os: [macos-latest, windows-latest, ubuntu-latest]
-        node: [10, 12]
+        os:
+          - macos-latest
+          - windows-latest
+          - ubuntu-latest
+        node:
+          - 10
+          - 12
         exclude:
           - os: macos-latest
             node: 10
           - os: windows-latest
             node: 10
+    runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - if: "!github.event.repository.private || (matrix.os == 'ubuntu-latest' &&
+          matrix.node == 12)"
+        uses: actions/checkout@v2
+      - if: "!github.event.repository.private || (matrix.os == 'ubuntu-latest' &&
+          matrix.node == 12)"
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-      - run: yarn --frozen-lockfile
-      - run: yarn test
+      - if: "!github.event.repository.private || (matrix.os == 'ubuntu-latest' &&
+          matrix.node == 12)"
+        run: |-
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          yarn --frozen-lockfile
+      - if: "!github.event.repository.private || (matrix.os == 'ubuntu-latest' &&
+          matrix.node == 12)"
+        run: yarn test
+      - name: Push changed files
+        run: yarn dw-ci push-changed-files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
       - name: Coveralls
         run: yarn dw-ci coveralls
         env:
@@ -31,25 +57,20 @@ jobs:
           COVERALLS_SERVICE_NAME: github
           COVERALLS_GIT_COMMIT: ${{ github.sha }}
           COVERALLS_GIT_BRANCH: ${{ github.ref }}
-
   release:
     needs: test
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v1
         with:
           node-version: 12
       - run: yarn --frozen-lockfile
-      - name: Push changed files
-        run: yarn dw-ci push-changed-files
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          yarn semantic-release
+        run: yarn semantic-release
