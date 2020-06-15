@@ -23,7 +23,7 @@ const runTest = ({
       endent`
       #!/usr/bin/env node
 
-      const makeCli = require('make-cli')
+      const makeCli = require('../src')
       const { outputFile } = require('fs-extra')
 
       makeCli(${optionsString()})
