@@ -981,6 +981,11 @@
     stable-version-regex "^1.0.4"
     yaml "^1.8.2"
 
+"@dword-design/chdir@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@dword-design/chdir/-/chdir-1.0.0.tgz#cbf16df7e7f1cc82d0d327b10531e2bafb69f79f"
+  integrity sha512-5xbzu4vMk+9SokonVtLzRqQHT3fNIYTqEG8L7g/T/ZGu9NI+2ojWVykPI/mSfKec5mYlShIaHzrxVK4cY0dn+w==
+
 "@dword-design/ci@^1.0.1":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@dword-design/ci/-/ci-1.0.6.tgz#1ad1649a3cb39bdfd4ebde837654421fe6281ad0"
@@ -1614,9 +1619,9 @@ ajv@^5.0.0:
     json-schema-traverse "^0.3.0"
 
 ajv@^6.10.0, ajv@^6.10.2, ajv@^6.5.5, ajv@^6.7.0:
-  version "6.12.2"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.2.tgz#c629c5eced17baf314437918d2da88c99d5958cd"
-  integrity sha512-k+V+hzjm5q/Mr8ef/1Y9goCmlsK4I6Sm74teeyGvFk1XrOsbsKLjEdrvny42CZ+a8sXbk8KWpY/bDwS+FLL2UQ==
+  version "6.12.3"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.3.tgz#18c5af38a111ddeb4f2697bd78d68abc1cabd706"
+  integrity sha512-4K0cK3L1hsqk9xIb2z9vs/XU+PGJZ9PNpJRDS9YLzmNdX6jmVPfamLvTJr0aDAusnHyCHO6MjzlkAsgtqp9teA==
   dependencies:
     fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
@@ -2248,10 +2253,6 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
-
-"chdir@github:dword-design/node-chdir#fork":
-  version "0.0.0"
-  resolved "https://codeload.github.com/dword-design/node-chdir/tar.gz/7eaa8592e576b0f9d6d3ce699b02b04dcd8a2c16"
 
 chokidar@3.3.0:
   version "3.3.0"
@@ -2961,17 +2962,17 @@ delegates@^1.0.0:
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
 
 depcheck-detector-execa@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-1.2.1.tgz#62d600ac660cefbf8c00467d7f72a8721dfb03f6"
-  integrity sha512-fCOa0oKXu39/DIF3AaO9SWyt/7Z5jz2WMGeb1RrZKLsYhlkNCS70KM6tZsBfzmfnKQsihOEHuA4Q6JQtMQxZKA==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/depcheck-detector-execa/-/depcheck-detector-execa-1.2.2.tgz#d0bc5dc2fd84cfba1068621ad5f87b770d480fa8"
+  integrity sha512-S3G5+ycQu+YdXVJdjnGMzZ1eiumMNF9I1R9YsMq6jY7Lqx0pzbs1rfkSj41at7YX/4ZPgVa84P5iiSN4Q7sxuQ==
   dependencies:
     "@dword-design/functions" "^2.2.4"
     resolve-from "^5.0.0"
 
 depcheck-parser-babel@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-1.2.1.tgz#aeb4d6dd2af1877f7978f02bcdbdab6d1a8dbeba"
-  integrity sha512-UhZbm+p63WhLBRE6f15dT9ayQBegs63cOk6WtqjPf9nxTaXBVEmXN9iQPOURt0UvxxIOUrnJ/GDHdLnxqxyqiQ==
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/depcheck-parser-babel/-/depcheck-parser-babel-1.2.2.tgz#6e2b7aff7eae72aa4d68e9299b1d416be75b68aa"
+  integrity sha512-jtHfJP0Yq5gS0/J465ZZJM5dG51Fj42D91CDoBKpXa6cE/wz0jGr1CMMUeQ3mpPJVgUeikSYubMlWg3UMtCvxg==
   dependencies:
     "@babel/core" "^7.7.7"
     fs-extra "^9.0.0"
@@ -6887,9 +6888,9 @@ osenv@^0.1.4, osenv@^0.1.5:
     os-tmpdir "^1.0.0"
 
 output-files@^1.1.7:
-  version "1.1.16"
-  resolved "https://registry.yarnpkg.com/output-files/-/output-files-1.1.16.tgz#af8cac947a82dc0a11e74289cc6f975adcbf213a"
-  integrity sha512-UygEyvla4WzpZBcFMzQrE+EFaIFLaOQlg6S+tMpsI5cKNnTAhAvv5mT/1b7ugsvg6j+lUpEDa2zieFV94Q6GfQ==
+  version "1.1.17"
+  resolved "https://registry.yarnpkg.com/output-files/-/output-files-1.1.17.tgz#92670e1296ce4ab86f27ea286b73c60b2657317e"
+  integrity sha512-P5D3L0wC6ekFulxOcnnqOhC7xxkMuzP8h7CYyO04QS4oNtc/rhM4HDHzRLd0XLGyQC5I0x7Bv8OhujeGFuN11w==
   dependencies:
     "@dword-design/functions" "^2.2.2"
     fs-extra "^9.0.0"
@@ -9437,11 +9438,11 @@ windows-release@^3.1.0:
     execa "^1.0.0"
 
 with-local-tmp-dir@^2.0.4:
-  version "2.2.10"
-  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.2.10.tgz#f840d54ada8f7714866e5d638b021ebbc8c2b9b0"
-  integrity sha512-QjUhQh7HN/OzaAkrXG+4eWyREOjWXLDD97tD2WKq68RTs2AiGPaxwlBIF15dul/vF05KG1RGvLR59a51O7xpyg==
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/with-local-tmp-dir/-/with-local-tmp-dir-2.2.11.tgz#10f4e42929b98007558e2c75ef8d84757ff39c5a"
+  integrity sha512-wPkYa102IzCC15WG6+8swud511kJXyRF6J2rx2mYQ5yDTezeEZHydk7MG48SldjKk3fTpdVYRWUBaG/fIhY6MQ==
   dependencies:
-    chdir dword-design/node-chdir#fork
+    "@dword-design/chdir" "^1.0.0"
     tmp-promise "^3.0.0"
 
 word-wrap@^1.0.3, word-wrap@^1.2.3:
