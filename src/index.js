@@ -24,15 +24,14 @@ export default (config = {}) => {
   if (config.action) {
     program.action(config.action)
   }
-  config.commands.forEach(command =>
-    applyOptions(
-      program
-        .command([command.name, command.arguments] |> compact |> join(' '))
-        .description(command.description)
-        .action(command.handler),
-      command.options
+  config.commands.forEach(command => {
+    const cmd = program.command(
+      [command.name, command.arguments] |> compact |> join(' ')
     )
-  )
+    cmd.description(command.description)
+    cmd.action(command.handler)
+    applyOptions(cmd, command.options)
+  })
   if (config.defaultCommandName && process.argv.length <= 2) {
     return config.commands
       .find(command => command.name === config.defaultCommandName)

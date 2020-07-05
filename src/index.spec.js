@@ -135,8 +135,17 @@ export default {
         },
       ],
     }`,
-    test:
-      'Usage: the name the usage\n\nOptions:\n  -V, --version  output the version number\n  -h, --help     output usage information\n\nCommands:\n  build          Builds the app',
+    test: endent`
+      Usage: the name the usage
+
+      Options:
+        -V, --version   output the version number
+        -h, --help      display help for command
+
+      Commands:
+        build           Builds the app
+        help [command]  display help for command
+    `,
   },
   options: {
     arguments: ['--value', 'foo'],
