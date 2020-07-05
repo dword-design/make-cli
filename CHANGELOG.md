@@ -1,3 +1,11 @@
+## [1.0.21](https://github.com/dword-design/make-cli/compare/v1.0.20...v1.0.21) (2020-07-05)
+
+
+### Bug Fixes
+
+* fix command handling for commander 5 ([9502765](https://github.com/dword-design/make-cli/commit/950276544a3917ca99196cd0d756a765e34e9a96))
+* **deps:** update dependency commander to v5 ([d48e332](https://github.com/dword-design/make-cli/commit/d48e3321f21ae641fea3fe6d6318a755bbda887a))
+
 ## [1.0.20](https://github.com/dword-design/make-cli/compare/v1.0.19...v1.0.20) (2020-07-04)
 
 
