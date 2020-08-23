@@ -1,3 +1,11 @@
+## [1.0.22](https://github.com/dword-design/make-cli/compare/v1.0.21...v1.0.22) (2020-08-23)
+
+
+### Bug Fixes
+
+* upgrades ([d96deec](https://github.com/dword-design/make-cli/commit/d96deecf9abaeaa7d45027ea7341a3a96a161418))
+* **deps:** update dependency commander to v6 ([0a4ecd7](https://github.com/dword-design/make-cli/commit/0a4ecd7104b63fd56d64eb479c9716214c8d7969))
+
 ## [1.0.21](https://github.com/dword-design/make-cli/compare/v1.0.20...v1.0.21) (2020-07-05)
 
 
