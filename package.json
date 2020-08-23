@@ -23,6 +23,7 @@
     "dist"
   ],
   "scripts": {
+    "clean": "base clean",
     "commit": "base commit",
     "dev": "base dev",
     "lint": "base lint",
