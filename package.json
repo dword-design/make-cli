@@ -32,7 +32,7 @@
   },
   "dependencies": {
     "@dword-design/functions": "^2.2.2",
-    "commander": "^5.0.0"
+    "commander": "^6.0.0"
   },
   "devDependencies": {
     "@dword-design/base": "^6.0.0",
