@@ -1,3 +1,10 @@
+## [1.0.25](https://github.com/dword-design/make-cli/compare/v1.0.24...v1.0.25) (2021-02-16)
+
+
+### Bug Fixes
+
+* upgrades ([81659f7](https://github.com/dword-design/make-cli/commit/81659f736f21cbf78221b3a891da67ceb0ff36d4))
+
 ## [1.0.24](https://github.com/dword-design/make-cli/compare/v1.0.23...v1.0.24) (2020-12-10)
 
 
