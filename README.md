@@ -34,7 +34,7 @@
 <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js
+Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
