@@ -1,3 +1,10 @@
+## [1.0.30](https://github.com/dword-design/make-cli/compare/v1.0.29...v1.0.30) (2021-03-23)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v3 ([#41](https://github.com/dword-design/make-cli/issues/41)) ([813310c](https://github.com/dword-design/make-cli/commit/813310c5c2bbc98101c26a3424664526f592e9f6))
+
 ## [1.0.29](https://github.com/dword-design/make-cli/compare/v1.0.28...v1.0.29) (2021-03-22)
 
 
