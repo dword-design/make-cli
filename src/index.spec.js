@@ -160,6 +160,14 @@ export default {
     },
     test: async () => expect(await exists('foo.txt')).toBeTruthy(),
   },
+  'unknown option': {
+    arguments: ['--foo'],
+    optionsString: endent`{
+      allowUnknownOption: true,
+      action: (options, command) => console.log(command.args),
+    }`,
+    test: "[ '--foo' ]",
+  },
   version: {
     arguments: ['--version'],
     optionsString: "{ version: '0.1.0' }",
