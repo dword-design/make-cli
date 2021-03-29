@@ -20,6 +20,9 @@ export default (config = {}) => {
   if (config.arguments) {
     program.arguments(config.arguments)
   }
+  if (config.allowUnknownOption) {
+    program.allowUnknownOption()
+  }
   applyOptions(program, config.options)
   if (config.action) {
     program.action(config.action)

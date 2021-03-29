@@ -85,7 +85,10 @@ makeCli({
       description: 'Specifies the value',
     },
   ],
-  action: (remote, extra, { value }) => { /* Do stuff with the parameters */ },
+  action: (remote, extra, options) => {
+    // options.value and options.yes
+    // contain the options.
+  },
 })
 
 // It is also possible to define sub-commands
@@ -101,7 +104,7 @@ makeCli({
           name: '-y, --yes',
         },
       ],
-      action: (remote, { yes }) => { /* push the stuff */ },
+      action: (remote, options) => { /* push the stuff */ },
     },
     {
       name: 'pull',
@@ -120,7 +123,30 @@ $ my-cli --help
 $ my-cli --version
 ```
 
-For more information see the [Commander.js](https://www.npmjs.com/package/commander) website.
+You can also allow to pass unknown options and those are then available in the action like so:
+
+```js
+#!/usr/bin/env node
+
+const makeCli = require('make-cli')
+
+makeCli({
+  // ...
+  allowUnknownOption: true,
+  options: [
+    {
+      name: '-y, --yes',
+      description: 'Skip questions',
+    },
+  ],
+  action: (options, command) => {
+    // options.yes = true
+    // command.args = ['--foo']
+  },
+})
+```
+
+If you now run `my-cli --yes --foo`, `command.args` will contain `['--foo']`.
 
 <!-- LICENSE/ -->
 ## Contribute
