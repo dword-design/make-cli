@@ -83,6 +83,8 @@ makeCli({
     {
       name: '--value <value>',
       description: 'Specifies the value',
+      defaultValue: 'foo',
+      choices: ['foo', 'bar'],
     },
   ],
   action: (remote, extra, options) => {
