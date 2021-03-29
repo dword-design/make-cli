@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/dword-design/make-cli/compare/v1.1.0...v1.2.0) (2021-03-29)
+
+
+### Features
+
+* add choices ([#45](https://github.com/dword-design/make-cli/issues/45)) ([086092b](https://github.com/dword-design/make-cli/commit/086092bdff29cca84c004c547128cf956a031dea))
+
 # [1.1.0](https://github.com/dword-design/make-cli/compare/v1.0.30...v1.1.0) (2021-03-29)
 
 
