@@ -29,10 +29,7 @@ const runTest = config => () =>
       const output = await execa('./cli.js', config.arguments, { all: true })
       await test(output.all)
     } catch (error) {
-      if (error.all !== undefined) {
-        console.error(error.all)
-      }
-      throw error
+      await test(error.all)
     }
   })
 
@@ -146,6 +143,18 @@ export default {
         build           Builds the app
         help [command]  display help for command
     `,
+  },
+  'option choices': {
+    arguments: ['--foo', 'xyz'],
+    optionsString: endent`
+      {
+        options: [
+          { name: '-f, --foo <foo>', choices: ['bar', 'baz'] },
+        ],
+      }
+    `,
+    test:
+      "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
   },
   options: {
     arguments: ['--value', 'foo'],

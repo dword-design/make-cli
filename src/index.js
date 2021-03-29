@@ -1,13 +1,22 @@
 import { compact, join } from '@dword-design/functions'
+import commander from 'commander'
 
 const applyOptions = (program, options = []) =>
-  options.forEach(option =>
-    program.option(option.name, option.description, option.defaultValue)
-  )
+  options.forEach(option => {
+    const commanderOptions = new commander.Option(
+      option.name,
+      option.description,
+      option.defaultValue
+    )
+    if (option.choices) {
+      commanderOptions.choices(option.choices)
+    }
+    program.addOption(commanderOptions)
+  })
 
 export default (config = {}) => {
   config = { commands: [], options: [], ...config }
-  const program = require('commander')
+  const program = new commander.Command()
   if (config.version) {
     program.version(config.version)
   }
