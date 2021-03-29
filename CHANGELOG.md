@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/dword-design/make-cli/compare/v1.0.30...v1.1.0) (2021-03-29)
+
+
+### Features
+
+* add allowUnknownOption ([#42](https://github.com/dword-design/make-cli/issues/42)) ([631581e](https://github.com/dword-design/make-cli/commit/631581eac688c908439e611f00692fd3d02e3fbb))
+
 ## [1.0.30](https://github.com/dword-design/make-cli/compare/v1.0.29...v1.0.30) (2021-03-23)
 
 
