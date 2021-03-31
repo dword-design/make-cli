@@ -9,6 +9,7 @@ const runTest = config => () =>
       typeof config.optionsString === 'function'
         ? config.optionsString
         : () => config.optionsString
+
     const test =
       typeof config.test === 'function'
         ? config.test
@@ -65,6 +66,7 @@ export default {
     arguments: ['build', 'foo'],
     optionsString: () => {
       const outputFileExpression = "outputFile(`${arg}.txt`, '')"
+
       return endent`{
         commands: [
           {
@@ -93,6 +95,7 @@ export default {
     arguments: ['build', '--value', 'foo'],
     optionsString: () => {
       const outputFileExpression = "outputFile(`${value}.txt`, '')"
+
       return endent`{
         commands: [
           {
@@ -160,6 +163,7 @@ export default {
     arguments: ['--value', 'foo'],
     optionsString: () => {
       const outputFileExpression = "outputFile(`${value}.txt`, '')"
+
       return endent`{
         options: [
           { name: '--value <value>' },
