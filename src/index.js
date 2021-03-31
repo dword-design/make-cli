@@ -16,6 +16,7 @@ const applyOptions = (program, options = []) =>
 
 export default (config = {}) => {
   config = { commands: [], options: [], ...config }
+
   const program = new commander.Command()
   if (config.version) {
     program.version(config.version)
@@ -52,5 +53,6 @@ export default (config = {}) => {
   if (config.commands.length > 0) {
     program.on('command:*', () => program.help())
   }
+
   return program.parse(process.argv)
 }
