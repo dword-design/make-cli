@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/dword-design/make-cli/compare/v1.2.1...v1.2.2) (2021-04-12)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#48](https://github.com/dword-design/make-cli/issues/48)) ([06565cf](https://github.com/dword-design/make-cli/commit/06565cfda542108b66425ae14891a4fe9ab6f09d))
+
 ## [1.2.1](https://github.com/dword-design/make-cli/compare/v1.2.0...v1.2.1) (2021-03-31)
 
 
