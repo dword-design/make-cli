@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/dword-design/make-cli/compare/v1.2.2...v1.2.3) (2021-04-20)
+
+
+### Bug Fixes
+
+* updated package.json[keywords] ([#52](https://github.com/dword-design/make-cli/issues/52)) ([bb4b1eb](https://github.com/dword-design/make-cli/commit/bb4b1eb5847bc365364fe5ad63eb08674a3300c5))
+
 ## [1.2.2](https://github.com/dword-design/make-cli/compare/v1.2.1...v1.2.2) (2021-04-12)
 
 
