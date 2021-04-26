@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/dword-design/make-cli/compare/v1.2.3...v1.2.4) (2021-04-26)
+
+
+### Bug Fixes
+
+* update dependency with-local-tmp-dir to v3 ([#53](https://github.com/dword-design/make-cli/issues/53)) ([c033e74](https://github.com/dword-design/make-cli/commit/c033e7423df329438fb28433513cc52eb090859c))
+
 ## [1.2.3](https://github.com/dword-design/make-cli/compare/v1.2.2...v1.2.3) (2021-04-20)
 
 
