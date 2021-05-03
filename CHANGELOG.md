@@ -1,3 +1,19 @@
+# [2.0.0](https://github.com/dword-design/make-cli/compare/v1.2.4...v2.0.0) (2021-05-03)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base to v8 ([#56](https://github.com/dword-design/make-cli/issues/56)) ([43ec8a1](https://github.com/dword-design/make-cli/commit/43ec8a15014e2ccb1f00e4d9d953d4a214585945))
+
+
+### BREAKING CHANGES
+
+* require Node.js >= 12
+
+Co-authored-by: Renovate Bot <bot@renovateapp.com>
+Co-authored-by: Sebastian Landwehr <info@dword-design.de>
+Co-authored-by: GitHub Actions <actions@github.com>
+
 ## [1.2.4](https://github.com/dword-design/make-cli/compare/v1.2.3...v1.2.4) (2021-04-26)
 
 
