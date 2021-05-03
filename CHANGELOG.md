@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/dword-design/make-cli/compare/v2.0.0...v2.0.1) (2021-05-03)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/functions to v4 ([#57](https://github.com/dword-design/make-cli/issues/57)) ([acb778b](https://github.com/dword-design/make-cli/commit/acb778b2b788100cdb41f124dc0b4d880d004acc))
+
 # [2.0.0](https://github.com/dword-design/make-cli/compare/v1.2.4...v2.0.0) (2021-05-03)
 
 
