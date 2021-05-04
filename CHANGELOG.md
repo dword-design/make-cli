@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/dword-design/make-cli/compare/v2.0.2...v2.0.3) (2021-05-04)
+
+
+### Bug Fixes
+
+* update dependency fs-extra to v10 ([#58](https://github.com/dword-design/make-cli/issues/58)) ([f3ccbdb](https://github.com/dword-design/make-cli/commit/f3ccbdb63bfb8cbdd8d9749808891024e3215e40))
+
 ## [2.0.2](https://github.com/dword-design/make-cli/compare/v2.0.1...v2.0.2) (2021-05-04)
 
 
