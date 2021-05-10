@@ -156,8 +156,7 @@ export default {
         ],
       }
     `,
-    test:
-      "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
+    test: "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
   },
   options: {
     arguments: ['--value', 'foo'],
