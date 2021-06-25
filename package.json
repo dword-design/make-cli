@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@dword-design/functions": "^4.0.0",
-    "commander": "^7.0.0"
+    "commander": "^8.0.0"
   },
   "devDependencies": {
     "@dword-design/base": "^8.0.0",
