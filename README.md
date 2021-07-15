@@ -110,7 +110,7 @@ makeCli({
           name: '-y, --yes',
         },
       ],
-      action: (remote, options) => { /* push the stuff */ },
+      handler: (remote, options) => { /* push the stuff */ },
     },
     {
       name: 'pull',
