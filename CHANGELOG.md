@@ -1,3 +1,11 @@
+## [2.0.9](https://github.com/dword-design/make-cli/compare/v2.0.8...v2.0.9) (2021-07-18)
+
+
+### Bug Fixes
+
+* update config files ([ab7a416](https://github.com/dword-design/make-cli/commit/ab7a416f708e6a36dac8b127fa7bd6ab5066c717))
+* write GitHub metadata to package.json [description] ([ac93d00](https://github.com/dword-design/make-cli/commit/ac93d00380ad9d8ba58f35884c934298bf3d8960))
+
 ## [2.0.8](https://github.com/dword-design/make-cli/compare/v2.0.7...v2.0.8) (2021-07-15)
 
 
