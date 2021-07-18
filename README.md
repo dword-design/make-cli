@@ -50,7 +50,7 @@
 <!-- /BADGES -->
 
 <!-- DESCRIPTION/ -->
-Build command line tools declaratively with a configuration object and a single function call. Based on Commander.js.
+Super easy declarative CLI framework with a single configuration object and a single function call.
 <!-- /DESCRIPTION -->
 
 <!-- INSTALL/ -->
