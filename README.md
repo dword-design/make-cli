@@ -53,6 +53,10 @@
 Super easy declarative CLI framework with a single configuration object and a single function call.
 <!-- /DESCRIPTION -->
 
+There are so many command line interface libraries around that it's hard to find the right one for your needs. But there aren't many that expose a single function with a single config object like most other Node.js packages do. That's why there is `make-cli`! Call a single function, pass a single config object and you're good to go.
+
+Based on [Commander.js](https://github.com/tj/commander.js) and supports most of its features. In case you're missing something, feel free to open up an [issue](https://github.com/dword-design/make-cli/issues).
+
 <!-- INSTALL/ -->
 ## Install
 
@@ -67,9 +71,11 @@ $ yarn add make-cli
 
 ## Usage
 
-First the CLI has to be implemented:
+Create a `.js` file with Shebang and require `make-cli`. Then configure your command line tool like so:
 
 ```js
+// cli.js
+
 #!/usr/bin/env node
 
 const makeCli = require('make-cli')
@@ -96,9 +102,11 @@ makeCli({
     // contain the options.
   },
 })
+```
 
-// It is also possible to define sub-commands
+It is also possible to define sub-commands:
 
+```js
 makeCli({
   commands: [
     {
@@ -120,16 +128,27 @@ makeCli({
 })
 ```
 
-Then it can be called like so:
+Give it execution rights via `chmod +x cli.js`.
+
+Then you can call it via the shell of your choice:
 
 ```bash
-$ my-cli push origin --yes
-$ my-cli pull origin
-$ my-cli --help
-$ my-cli --version
+$ ./cli push origin --yes
+$ ./cli pull origin
+$ ./cli --help
+$ ./cli --version
 ```
 
-You can also allow to pass unknown options and those are then available in the action like so:
+When publishing your command line tool via NPM, you'll probably want to add the file to the [bin](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#bin) property, so it's installed to `node_modules/.bin`.
+
+```json
+{
+  "name": "my-cli",
+  "bin": "./cli.js"
+}
+```
+
+You can also allow to pass unknown options, which are then available in the action like so:
 
 ```js
 #!/usr/bin/env node
@@ -152,7 +171,7 @@ makeCli({
 })
 ```
 
-If you now run `my-cli --yes --foo`, `command.args` will contain `['--foo']`.
+If you now run `$ ./cli --yes --foo`, `command.args` will contain `['--foo']`.
 
 <!-- LICENSE/ -->
 ## Contribute
