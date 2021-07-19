@@ -133,10 +133,10 @@ Give it execution rights via `chmod +x cli.js`.
 Then you can call it via the shell of your choice:
 
 ```bash
-$ ./cli push origin --yes
-$ ./cli pull origin
-$ ./cli --help
-$ ./cli --version
+$ ./cli.js push origin --yes
+$ ./cli.js pull origin
+$ ./cli.js --help
+$ ./cli.js --version
 ```
 
 When publishing your command line tool via NPM, you'll probably want to add the file to the [bin](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#bin) property, so it's installed to `node_modules/.bin`.
@@ -171,7 +171,7 @@ makeCli({
 })
 ```
 
-If you now run `$ ./cli --yes --foo`, `command.args` will contain `['--foo']`.
+If you now run `$ ./cli.js --yes --foo`, `command.args` will contain `['--foo']`.
 
 <!-- LICENSE/ -->
 ## Contribute
