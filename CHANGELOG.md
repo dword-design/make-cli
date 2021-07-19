@@ -1,3 +1,10 @@
+## [2.0.11](https://github.com/dword-design/make-cli/compare/v2.0.10...v2.0.11) (2021-07-19)
+
+
+### Bug Fixes
+
+* fix cli call in readme ([12599b5](https://github.com/dword-design/make-cli/commit/12599b5ea1645be24db539d358f0e5fae38bd6cb))
+
 ## [2.0.10](https://github.com/dword-design/make-cli/compare/v2.0.9...v2.0.10) (2021-07-18)
 
 
