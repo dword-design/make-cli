@@ -1,8 +1,8 @@
 import { compact, join } from '@dword-design/functions'
 import commander from 'commander'
 
-const applyOptions = (program, options = []) =>
-  options.forEach(option => {
+const applyOptions = (program, options = []) => {
+  for (const option of options) {
     const commanderOptions = new commander.Option(
       option.name,
       option.description,
@@ -12,7 +12,8 @@ const applyOptions = (program, options = []) =>
       commanderOptions.choices(option.choices)
     }
     program.addOption(commanderOptions)
-  })
+  }
+}
 
 export default (config = {}) => {
   config = { commands: [], options: [], ...config }
@@ -37,14 +38,14 @@ export default (config = {}) => {
   if (config.action) {
     program.action(config.action)
   }
-  config.commands.forEach(command => {
+  for (const command of config.commands) {
     const cmd = program.command(
       [command.name, command.arguments] |> compact |> join(' ')
     )
     cmd.description(command.description)
     cmd.action(command.handler)
     applyOptions(cmd, command.options)
-  })
+  }
   if (config.defaultCommandName && process.argv.length <= 2) {
     return config.commands
       .find(command => command.name === config.defaultCommandName)
