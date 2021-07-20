@@ -1,3 +1,11 @@
+## [2.0.12](https://github.com/dword-design/make-cli/compare/v2.0.11...v2.0.12) (2021-07-20)
+
+
+### Bug Fixes
+
+* replace forEach with for of ([11b0ce5](https://github.com/dword-design/make-cli/commit/11b0ce59b74dfb936d40ce50d141c48d2b87a6c9))
+* update config files ([582bc5b](https://github.com/dword-design/make-cli/commit/582bc5b64c5512af3d01927f05277c43c9089312))
+
 ## [2.0.11](https://github.com/dword-design/make-cli/compare/v2.0.10...v2.0.11) (2021-07-19)
 
 
