@@ -3,7 +3,7 @@
 <!-- /TITLE -->
 
 <!-- BADGES/ -->
-  <p>
+<p>
     <a href="https://npmjs.org/package/make-cli">
       <img
         src="https://img.shields.io/npm/v/make-cli.svg"
