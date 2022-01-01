@@ -1,3 +1,10 @@
+## [2.0.13](https://github.com/dword-design/make-cli/compare/v2.0.12...v2.0.13) (2022-01-01)
+
+
+### Bug Fixes
+
+* support async error handling ([909e248](https://github.com/dword-design/make-cli/commit/909e2481833c60c392101666d70e089c4854ae7f))
+
 ## [2.0.12](https://github.com/dword-design/make-cli/compare/v2.0.11...v2.0.12) (2021-07-20)
 
 
