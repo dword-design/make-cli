@@ -5,10 +5,10 @@ import withLocalTmpDir from 'with-local-tmp-dir'
 
 const runTest = config => () =>
   withLocalTmpDir(async () => {
-    const optionsString =
-      typeof config.optionsString === 'function'
-        ? config.optionsString
-        : () => config.optionsString
+    const callString =
+      typeof config.callString === 'function'
+        ? config.callString
+        : () => config.callString
 
     const test =
       typeof config.test === 'function'
@@ -22,7 +22,7 @@ const runTest = config => () =>
       const makeCli = require('../src')
       const { outputFile } = require('fs-extra')
 
-      makeCli(${optionsString()})
+      ${callString()}
     `,
       { mode: '755' }
     )
@@ -36,105 +36,140 @@ const runTest = config => () =>
 
 export default {
   action: {
-    optionsString: "{ action: () => console.log('foo') }",
+    callString: "makeCli({ action: () => console.log('foo') })",
     test: 'foo',
   },
   'arguments: mandatory': {
     arguments: ['foo', 'bar'],
-    optionsString: endent`{
-      arguments: '<first> <second>',
-      action: (first, second) => { console.log(first); console.log(second) },
-    }`,
+    callString: endent`
+      makeCli({
+        arguments: '<first> <second>',
+        action: (first, second) => { console.log(first); console.log(second) },
+      })
+    `,
     test: 'foo\nbar',
   },
   'arguments: optional not set': {
-    optionsString: endent`{
-      arguments: '[arg]',
-      action: arg => console.log(arg),
-    }`,
+    callString: endent`
+      makeCli({
+        arguments: '[arg]',
+        action: arg => console.log(arg),
+      })
+    `,
     test: 'undefined',
   },
   'arguments: optional set': {
     arguments: ['foo'],
-    optionsString: endent`{
-      arguments: '[arg]',
-      action: arg => console.log(arg),
-    }`,
+    callString: endent`
+      makeCli({
+        arguments: '[arg]',
+        action: arg => console.log(arg),
+      })
+    `,
+    test: 'foo',
+  },
+  'async error': {
+    callString: endent`
+      const run = async () => {
+        try {
+          await makeCli({
+            action: async () => {
+              await new Promise(resolve => setTimeout(resolve, 100))
+              throw new Error('foo')
+            },
+          })
+        } catch (error) {
+          console.log(error.message)
+          process.exit(1)
+        }
+      }
+      run()
+    `,
     test: 'foo',
   },
   'commands: arguments': {
     arguments: ['build', 'foo'],
-    optionsString: () => {
+    callString: () => {
       const outputFileExpression = "outputFile(`${arg}.txt`, '')"
 
-      return endent`{
-        commands: [
-          {
-            name: 'build',
-            arguments: '<arg>',
-            handler: arg => ${outputFileExpression},
-          }
-        ],
-      }`
+      return endent`
+        makeCli({
+          commands: [
+            {
+              name: 'build',
+              arguments: '<arg>',
+              handler: arg => ${outputFileExpression},
+            }
+          ],
+        })
+      `
     },
     test: async () => expect(await exists('foo.txt')).toBeTruthy(),
   },
   'commands: default': {
-    optionsString: endent`{
-      commands: [
-        {
-          name: 'build',
-          handler: () => console.log('foo'),
-        }
-      ],
-      defaultCommandName: 'build',
-    }`,
+    callString: endent`
+      makeCli({
+        commands: [
+          {
+            name: 'build',
+            handler: () => console.log('foo'),
+          }
+        ],
+        defaultCommandName: 'build',
+      })
+    `,
     test: 'foo',
   },
   'commands: options': {
     arguments: ['build', '--value', 'foo'],
-    optionsString: () => {
+    callString: () => {
       const outputFileExpression = "outputFile(`${value}.txt`, '')"
 
-      return endent`{
-        commands: [
-          {
-            name: 'build',
-            options: [
-              { name: '--value <value>' },
-            ],
-            handler: ({ value }) => ${outputFileExpression},
-          }
-        ],
-      }`
+      return endent`
+        makeCli({
+          commands: [
+            {
+              name: 'build',
+              options: [
+                { name: '--value <value>' },
+              ],
+              handler: ({ value }) => ${outputFileExpression},
+            }
+          ],
+        })
+      `
     },
     test: async () => expect(await exists('foo.txt')).toBeTruthy(),
   },
   'commands: valid': {
     arguments: ['build'],
-    optionsString: () => endent`{
-      commands: [
-        {
-          name: 'build',
-          handler: () => outputFile('foo.txt', ''),
-        }
-      ],
-    }`,
+    callString: () => endent`
+      makeCli({
+        commands: [
+          {
+            name: 'build',
+            handler: () => outputFile('foo.txt', ''),
+          }
+        ],
+      })
+    `,
     test: async () => expect(await exists('foo.txt')).toBeTruthy(),
   },
   help: {
     arguments: ['--help'],
-    optionsString: endent`{
-      version: '0.1.0',
-      name: 'the name',
-      usage: 'the usage',
-      commands: [
-        {
-          name: 'build',
-          description: 'Builds the app',
-        },
-      ],
-    }`,
+    callString: endent`
+      makeCli({
+        version: '0.1.0',
+        name: 'the name',
+        usage: 'the usage',
+        commands: [
+          {
+            name: 'build',
+            description: 'Builds the app',
+          },
+        ],
+      })
+    `,
     test: endent`
       Usage: the name the usage
 
@@ -149,40 +184,44 @@ export default {
   },
   'option choices': {
     arguments: ['--foo', 'xyz'],
-    optionsString: endent`
-      {
+    callString: endent`
+      makeCli({
         options: [
           { name: '-f, --foo <foo>', choices: ['bar', 'baz'] },
         ],
-      }
+      })
     `,
     test: "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
   },
   options: {
     arguments: ['--value', 'foo'],
-    optionsString: () => {
+    callString: () => {
       const outputFileExpression = "outputFile(`${value}.txt`, '')"
 
-      return endent`{
-        options: [
-          { name: '--value <value>' },
-        ],
-        action: ({ value }) => ${outputFileExpression},
-      }`
+      return endent`
+        makeCli({
+          options: [
+            { name: '--value <value>' },
+          ],
+          action: ({ value }) => ${outputFileExpression},
+        })
+      `
     },
     test: async () => expect(await exists('foo.txt')).toBeTruthy(),
   },
   'unknown option': {
     arguments: ['--foo'],
-    optionsString: endent`{
-      allowUnknownOption: true,
-      action: (options, command) => console.log(command.args),
-    }`,
+    callString: endent`
+      makeCli({
+        allowUnknownOption: true,
+        action: (options, command) => console.log(command.args),
+      })
+    `,
     test: "[ '--foo' ]",
   },
   version: {
     arguments: ['--version'],
-    optionsString: "{ version: '0.1.0' }",
+    callString: "makeCli({ version: '0.1.0' })",
     test: '0.1.0',
   },
 } |> mapValues(runTest)

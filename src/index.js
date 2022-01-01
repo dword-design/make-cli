@@ -55,5 +55,5 @@ export default (config = {}) => {
     program.on('command:*', () => program.help())
   }
 
-  return program.parse(process.argv)
+  return program.parseAsync(process.argv)
 }
