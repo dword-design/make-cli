@@ -1,9 +1,9 @@
 import { compact, join } from '@dword-design/functions'
-import commander from 'commander'
+import { Command, Option } from 'commander'
 
 const applyOptions = (program, options = []) => {
   for (const option of options) {
-    const commanderOptions = new commander.Option(
+    const commanderOptions = new Option(
       option.name,
       option.description,
       option.defaultValue
@@ -18,7 +18,7 @@ const applyOptions = (program, options = []) => {
 export default (config = {}) => {
   config = { commands: [], options: [], ...config }
 
-  const program = new commander.Command()
+  const program = new Command()
   if (config.version) {
     program.version(config.version)
   }
