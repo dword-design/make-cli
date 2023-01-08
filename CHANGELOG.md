@@ -1,3 +1,15 @@
+# [3.0.0](https://github.com/dword-design/make-cli/compare/v2.0.15...v3.0.0) (2023-01-08)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#113](https://github.com/dword-design/make-cli/issues/113)) ([cd19704](https://github.com/dword-design/make-cli/commit/cd197045ff75780e453f0afd7d5c7e7293169dc5))
+
+
+### BREAKING CHANGES
+
+* drop node 12 support, move to esm
+
 ## [2.0.15](https://github.com/dword-design/make-cli/compare/v2.0.14...v2.0.15) (2022-01-12)
 
 
