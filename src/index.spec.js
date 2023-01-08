@@ -1,6 +1,6 @@
 import { endent, mapValues } from '@dword-design/functions'
-import execa from 'execa'
-import { exists, outputFile } from 'fs-extra'
+import { execa } from 'execa'
+import fs from 'fs-extra'
 import withLocalTmpDir from 'with-local-tmp-dir'
 
 const runTest = config => () =>
@@ -14,18 +14,21 @@ const runTest = config => () =>
       typeof config.test === 'function'
         ? config.test
         : stdout => expect(stdout).toEqual(config.test)
-    await outputFile(
-      'cli.js',
-      endent`
-      #!/usr/bin/env node
+    await Promise.all([
+      fs.outputFile(
+        'cli.js',
+        endent`
+        #!/usr/bin/env node
 
-      const makeCli = require('../src')
-      const { outputFile } = require('fs-extra')
+        import makeCli from '../src/index.js'
+        import fs from 'fs-extra'
 
-      ${callString()}
-    `,
-      { mode: '755' }
-    )
+        ${callString()}
+      `,
+        { mode: '755' }
+      ),
+      fs.outputFile('package.json', JSON.stringify({ type: 'module' })),
+    ])
     try {
       const output = await execa('./cli.js', config.arguments, { all: true })
       await test(output.all)
@@ -90,7 +93,7 @@ export default {
   'commands: arguments': {
     arguments: ['build', 'foo'],
     callString: () => {
-      const outputFileExpression = "outputFile(`${arg}.txt`, '')"
+      const outputFileExpression = "fs.outputFile(`${arg}.txt`, '')"
 
       return endent`
         makeCli({
@@ -104,7 +107,7 @@ export default {
         })
       `
     },
-    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+    test: async () => expect(await fs.exists('foo.txt')).toBeTruthy(),
   },
   'commands: default': {
     callString: endent`
@@ -123,7 +126,7 @@ export default {
   'commands: options': {
     arguments: ['build', '--value', 'foo'],
     callString: () => {
-      const outputFileExpression = "outputFile(`${value}.txt`, '')"
+      const outputFileExpression = "fs.outputFile(`${value}.txt`, '')"
 
       return endent`
         makeCli({
@@ -139,7 +142,7 @@ export default {
         })
       `
     },
-    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+    test: async () => expect(await fs.exists('foo.txt')).toBeTruthy(),
   },
   'commands: valid': {
     arguments: ['build'],
@@ -148,12 +151,12 @@ export default {
         commands: [
           {
             name: 'build',
-            handler: () => outputFile('foo.txt', ''),
+            handler: () => fs.outputFile('foo.txt', ''),
           }
         ],
       })
     `,
-    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+    test: async () => expect(await fs.exists('foo.txt')).toBeTruthy(),
   },
   help: {
     arguments: ['--help'],
@@ -196,7 +199,7 @@ export default {
   options: {
     arguments: ['--value', 'foo'],
     callString: () => {
-      const outputFileExpression = "outputFile(`${value}.txt`, '')"
+      const outputFileExpression = "fs.outputFile(`${value}.txt`, '')"
 
       return endent`
         makeCli({
@@ -207,7 +210,7 @@ export default {
         })
       `
     },
-    test: async () => expect(await exists('foo.txt')).toBeTruthy(),
+    test: async () => expect(await fs.exists('foo.txt')).toBeTruthy(),
   },
   'unknown option': {
     arguments: ['--foo'],
