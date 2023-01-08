@@ -14,19 +14,21 @@ const runTest = config => () =>
       typeof config.test === 'function'
         ? config.test
         : stdout => expect(stdout).toEqual(config.test)
-    await fs.outputFile(
-      'cli.js',
-      endent`
-      #!/usr/bin/env node
+    await Promise.all([
+      fs.outputFile(
+        'cli.js',
+        endent`
+        #!/usr/bin/env node
 
-      import makeCli from '../src/index.js'
-      import fs from 'fs-extra'
+        import makeCli from '../src/index.js'
+        import fs from 'fs-extra'
 
-      ${callString()}
-    `,
-      { mode: '755' }
-    )
-    await fs.outputFile('package.json', JSON.stringify({ type: 'module' }))
+        ${callString()}
+      `,
+        { mode: '755' }
+      ),
+      fs.outputFile('package.json', JSON.stringify({ type: 'module' })),
+    ])
     try {
       const output = await execa('./cli.js', config.arguments, { all: true })
       await test(output.all)
