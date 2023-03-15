@@ -18,14 +18,14 @@ const runTest = config => () =>
       fs.outputFile(
         'cli.js',
         endent`
-        #!/usr/bin/env node
+          #!/usr/bin/env node
 
-        import makeCli from '../src/index.js'
-        import fs from 'fs-extra'
+          import makeCli from '../src/index.js'
+          import fs from 'fs-extra'
 
-        ${callString()}
-      `,
-        { mode: '755' }
+          ${callString()}
+        `,
+        { mode: '755' },
       ),
       fs.outputFile('package.json', JSON.stringify({ type: 'module' })),
     ])
