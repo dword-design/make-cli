@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/dword-design/make-cli/compare/v3.0.1...v3.0.2) (2023-03-15)
+
+
+### Bug Fixes
+
+* update dependency execa to v7.1.1 ([24416bd](https://github.com/dword-design/make-cli/commit/24416bd3a11e5fc9a05741982966bf9640c5e6d6))
+
 ## [3.0.1](https://github.com/dword-design/make-cli/compare/v3.0.0...v3.0.1) (2023-02-14)
 
 
