@@ -71,14 +71,14 @@ $ yarn add make-cli
 
 ## Usage
 
-Create a `.js` file with Shebang and require `make-cli`. Then configure your command line tool like so:
+Create a `.js` file with Shebang and import `make-cli`. Then configure your command line tool like so:
 
 ```js
 // cli.js
 
 #!/usr/bin/env node
 
-const makeCli = require('make-cli')
+import makeCli from 'make-cli'
 
 makeCli({
   version: '0.1.0',
@@ -104,7 +104,29 @@ makeCli({
 })
 ```
 
-It is also possible to define sub-commands:
+Give it execution rights via `chmod +x cli.js`.
+
+Then you can call it via the shell of your choice:
+
+```bash
+$ ./cli.js --yes
+$ ./cli.js foo
+$ ./cli.js --help
+$ ./cli.js --version
+```
+
+When publishing your command line tool via NPM, you'll probably want to add the file to the [bin](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#bin) property, so it's installed to `node_modules/.bin`.
+
+```json
+{
+  "name": "my-cli",
+  "bin": "./cli.js"
+}
+```
+
+### Subcommands
+
+It is possible to define subcommands like so:
 
 ```js
 makeCli({
@@ -128,32 +150,50 @@ makeCli({
 })
 ```
 
-Give it execution rights via `chmod +x cli.js`.
-
-Then you can call it via the shell of your choice:
+Then you can call it:
 
 ```bash
-$ ./cli.js push origin --yes
-$ ./cli.js pull origin
-$ ./cli.js --help
-$ ./cli.js --version
+$ ./cli.js push origin
 ```
 
-When publishing your command line tool via NPM, you'll probably want to add the file to the [bin](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#bin) property, so it's installed to `node_modules/.bin`.
+### Declaring options and commands as objects
 
-```json
-{
-  "name": "my-cli",
-  "bin": "./cli.js"
-}
+Instead of an array you can declare options and commands as objects, which is sometimes more convenient:
+
+```js
+makeCli({
+  options: [
+    '-y, --yes': { description: 'Skip questions' },
+    '--value <value>': {
+      description: 'Specifies the value',
+      defaultValue: 'foo',
+      choices: ['foo', 'bar'],
+    },
+  ],
+  commands: {
+    push: {
+      description: 'Pushes to the repo',
+      arguments: '<remote>',
+      options: [
+        {
+          name: '-y, --yes',
+        },
+      ],
+      handler: (remote, options) => { /* ... */ },
+    },
+    pull: () => { /* ... */ },
+  }
+})
 ```
+
+### Unknown options
 
 You can also allow to pass unknown options, which are then available in the action like so:
 
 ```js
 #!/usr/bin/env node
 
-const makeCli = require('make-cli')
+import makeCli from 'make-cli'
 
 makeCli({
   // ...

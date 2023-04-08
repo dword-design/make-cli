@@ -1,7 +1,11 @@
-import { compact, join } from '@dword-design/functions'
+import { compact, join, mapValues, values } from '@dword-design/functions'
 import { Command, Option } from 'commander'
 
 const applyOptions = (program, options = []) => {
+  if (!Array.isArray(options)) {
+    options =
+      options |> mapValues((option, name) => ({ name, ...option })) |> values
+  }
   for (const option of options) {
     const commanderOptions = new Option(
       option.name,
@@ -17,6 +21,12 @@ const applyOptions = (program, options = []) => {
 
 export default (config = {}) => {
   config = { commands: [], options: [], ...config }
+  if (!Array.isArray(config.commands)) {
+    config.commands =
+      config.commands
+      |> mapValues((command, name) => ({ name, ...command }))
+      |> values
+  }
 
   const program = new Command()
   if (config.version) {
