@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/dword-design/make-cli/compare/v3.0.2...v3.0.3) (2023-04-08)
+
+
+### Bug Fixes
+
+* add options syntax ([f0651e7](https://github.com/dword-design/make-cli/commit/f0651e72889a4b3873116d68221ad881e8d01f25))
+
 ## [3.0.2](https://github.com/dword-design/make-cli/compare/v3.0.1...v3.0.2) (2023-03-15)
 
 
