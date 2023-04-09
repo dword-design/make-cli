@@ -1382,6 +1382,16 @@
     lodash "^4.17.15"
     tinycolor2 "^1.4.1"
 
+"@dword-design/functions@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@dword-design/functions/-/functions-5.0.1.tgz#6bdcc41c4fdb0db088c77aa337daeb1f2420d863"
+  integrity sha512-vPYKRtCEN3UDOTGBlIDnxzwPTMPPsTAeGPumRc54sr7QDLHPdqZVvrnQOeCFyF5tYY8RqCbkLemetYqRP7hSmg==
+  dependencies:
+    "@dword-design/endent" "^1.0.0"
+    delay "^5.0.0"
+    lodash "^4.17.15"
+    tinycolor2 "^1.4.1"
+
 "@dword-design/personal-data@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@dword-design/personal-data/-/personal-data-1.0.1.tgz#2f564f4c10c06c189e23b899148d54d4101b0522"
