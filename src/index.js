@@ -10,7 +10,7 @@ const applyOptions = (program, options = []) => {
     const commanderOptions = new Option(
       option.name,
       option.description,
-      option.defaultValue
+      option.defaultValue,
     )
     if (option.choices) {
       commanderOptions.choices(option.choices)
@@ -50,7 +50,7 @@ export default (config = {}) => {
   }
   for (const command of config.commands) {
     const cmd = program.command(
-      [command.name, command.arguments] |> compact |> join(' ')
+      [command.name, command.arguments] |> compact |> join(' '),
     )
     cmd.description(command.description)
     cmd.action(command.handler)
