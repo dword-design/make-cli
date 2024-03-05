@@ -82,6 +82,10 @@ export default {
   },
   async beforeEach() {
     this.resetWithLocalTmpDir = await withLocalTmpDir()
+    await fs.outputFile(
+      '.babelrc.json',
+      JSON.stringify({ extends: '@dword-design/babel-config' }),
+    )
   },
   'commands: arguments': async () => {
     await outputCliFile(endent`
