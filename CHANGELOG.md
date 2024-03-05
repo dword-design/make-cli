@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/dword-design/make-cli/compare/v3.0.5...v4.0.0) (2024-03-05)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#132](https://github.com/dword-design/make-cli/issues/132)) ([803234f](https://github.com/dword-design/make-cli/commit/803234f34621fa5befee7cb16303748504bf2670))
+
+
+### BREAKING CHANGES
+
+* node.js >= 18
+
 ## [3.0.5](https://github.com/dword-design/make-cli/compare/v3.0.4...v3.0.5) (2023-07-27)
 
 
