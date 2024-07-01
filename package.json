@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@dword-design/base": "^11.0.7",
-    "execa": "^8.0.1",
+    "execa": "^9.0.0",
     "fs-extra": "^11.2.0",
     "with-local-tmp-dir": "^5.1.0"
   },
