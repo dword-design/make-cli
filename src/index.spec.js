@@ -1,7 +1,7 @@
-import { endent, property } from '@dword-design/functions'
-import { execaCommand } from 'execa'
-import fs from 'fs-extra'
-import withLocalTmpDir from 'with-local-tmp-dir'
+import { endent, property } from '@dword-design/functions';
+import { execaCommand } from 'execa';
+import fs from 'fs-extra';
+import withLocalTmpDir from 'with-local-tmp-dir';
 
 const outputCliFile = content =>
   fs.outputFile(
@@ -14,17 +14,18 @@ const outputCliFile = content =>
       ${content}
     `,
     { mode: '755' },
-  )
+  );
 
 export default {
   action: async () => {
-    await outputCliFile("self({ action: () => console.log('foo') })")
+    await outputCliFile("self({ action: () => console.log('foo') })");
+
     expect(execaCommand('./cli.js') |> await |> property('stdout')).toEqual(
       'foo',
-    )
+    );
   },
   async afterEach() {
-    await this.resetWithLocalTmpDir()
+    await this.resetWithLocalTmpDir();
   },
   'arguments: mandatory': async () => {
     await outputCliFile(endent`
@@ -32,12 +33,13 @@ export default {
         arguments: '<first> <second>',
         action: (first, second) => { console.log(first); console.log(second) },
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js foo bar') |> await |> property('stdout'))
       .toEqual(endent`
         foo
         bar
-      `)
+      `);
   },
   'arguments: optional not set': async () => {
     await outputCliFile(endent`
@@ -45,10 +47,11 @@ export default {
         arguments: '[arg]',
         action: arg => console.log(arg),
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js') |> await |> property('stdout')).toEqual(
       'undefined',
-    )
+    );
   },
   'arguments: optional set': async () => {
     await outputCliFile(endent`
@@ -56,10 +59,11 @@ export default {
         arguments: '[arg]',
         action: arg => console.log(arg),
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js foo') |> await |> property('stdout')).toEqual(
       'foo',
-    )
+    );
   },
   'async error': async () => {
     await outputCliFile(endent`
@@ -77,15 +81,17 @@ export default {
         }
       }
       run()
-    `)
-    await expect(execaCommand('./cli.js')).rejects.toThrow('foo')
+    `);
+
+    await expect(execaCommand('./cli.js')).rejects.toThrow('foo');
   },
   async beforeEach() {
-    this.resetWithLocalTmpDir = await withLocalTmpDir()
+    this.resetWithLocalTmpDir = await withLocalTmpDir();
+
     await fs.outputFile(
       '.babelrc.json',
       JSON.stringify({ extends: '@dword-design/babel-config' }),
-    )
+    );
   },
   'commands: arguments': async () => {
     await outputCliFile(endent`
@@ -98,10 +104,11 @@ export default {
           }
         ],
       })
-    `)
+    `);
+
     expect(
       execaCommand('./cli.js build foo') |> await |> property('stdout'),
-    ).toEqual('foo')
+    ).toEqual('foo');
   },
   'commands: default': async () => {
     await outputCliFile(endent`
@@ -114,10 +121,11 @@ export default {
         ],
         defaultCommandName: 'build',
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js') |> await |> property('stdout')).toEqual(
       'foo',
-    )
+    );
   },
   'commands: object': async () => {
     await outputCliFile(endent`
@@ -127,7 +135,8 @@ export default {
           bar: { description: 'bar description' },
         },
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js --help') |> await |> property('stdout'))
       .toEqual(endent`
         Usage: cli [options] [command]
@@ -139,7 +148,7 @@ export default {
           foo             foo description
           bar             bar description
           help [command]  display help for command
-      `)
+      `);
   },
   'commands: options': async () => {
     await outputCliFile(endent`
@@ -154,10 +163,11 @@ export default {
           }
         ],
       })
-    `)
+    `);
+
     expect(
       execaCommand('./cli.js build --value foo') |> await |> property('stdout'),
-    ).toEqual('foo')
+    ).toEqual('foo');
   },
   'commands: valid': async () => {
     await outputCliFile(endent`
@@ -169,10 +179,11 @@ export default {
           }
         ],
       })
-    `)
+    `);
+
     expect(
       execaCommand('./cli.js build') |> await |> property('stdout'),
-    ).toEqual('foo')
+    ).toEqual('foo');
   },
   help: async () => {
     await outputCliFile(endent`
@@ -187,7 +198,8 @@ export default {
           },
         ],
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js --help') |> await |> property('stdout'))
       .toEqual(endent`
         Usage: the name the usage
@@ -199,7 +211,7 @@ export default {
         Commands:
           build           Builds the app
           help [command]  display help for command
-      `)
+      `);
   },
   'option choices': async () => {
     await outputCliFile(endent`
@@ -208,10 +220,11 @@ export default {
           { name: '-f, --foo <foo>', choices: ['bar', 'baz'] },
         ],
       })
-    `)
+    `);
+
     await expect(execaCommand('./cli.js --foo xyz')).rejects.toThrow(
       "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
-    )
+    );
   },
   options: async () => {
     await outputCliFile(endent`
@@ -221,10 +234,11 @@ export default {
         ],
         action: options => console.log(options.value),
       })
-    `)
+    `);
+
     expect(
       execaCommand('./cli.js --value foo') |> await |> property('stdout'),
-    ).toEqual('foo')
+    ).toEqual('foo');
   },
   'options: object': async () => {
     await outputCliFile(endent`
@@ -233,7 +247,8 @@ export default {
           '-y, --yes': { description: 'foo bar' },
         },
       })
-    `)
+    `);
+
     expect(execaCommand('./cli.js --help') |> await |> property('stdout'))
       .toEqual(endent`
         Usage: cli [options]
@@ -241,7 +256,7 @@ export default {
         Options:
           -y, --yes   foo bar
           -h, --help  display help for command
-      `)
+      `);
   },
   'unknown option': async () => {
     await outputCliFile(endent`
@@ -249,15 +264,17 @@ export default {
         allowUnknownOption: true,
         action: (options, command) => console.log(command.args),
       })
-    `)
+    `);
+
     expect(
       execaCommand('./cli.js --foo') |> await |> property('stdout'),
-    ).toEqual("[ '--foo' ]")
+    ).toEqual("[ '--foo' ]");
   },
   version: async () => {
-    await outputCliFile("self({ version: '0.1.0' })")
+    await outputCliFile("self({ version: '0.1.0' })");
+
     expect(
       execaCommand('./cli.js --version') |> await |> property('stdout'),
-    ).toEqual('0.1.0')
+    ).toEqual('0.1.0');
   },
-}
+};
