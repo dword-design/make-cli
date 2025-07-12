@@ -11,7 +11,7 @@ test('action', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({ action: () => console.log('foo') });
     `,
@@ -27,7 +27,7 @@ test('arguments: mandatory', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         arguments: '<first> <second>',
@@ -50,7 +50,7 @@ test('arguments: optional not set', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         arguments: '[arg]',
@@ -69,7 +69,7 @@ test('arguments: optional set', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         arguments: '[arg]',
@@ -88,7 +88,7 @@ test('async error', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       try {
         await self({
@@ -113,7 +113,7 @@ test('commands: arguments', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         commands: [
@@ -137,7 +137,7 @@ test('commands: default', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         commands: [
@@ -161,7 +161,7 @@ test('commands: object', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       await self({
         commands: {
@@ -193,7 +193,7 @@ test('commands: options', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         commands: [
@@ -222,7 +222,7 @@ test('commands: valid', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         commands: [
@@ -245,7 +245,7 @@ test('help', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         version: '0.1.0',
@@ -282,7 +282,7 @@ test('option choices', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         options: [
@@ -303,7 +303,7 @@ test('options', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         options: [
@@ -324,7 +324,7 @@ test('options: object', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       await self({
         options: {
@@ -351,7 +351,7 @@ test('unknown option', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({
         allowUnknownOption: true,
@@ -370,7 +370,7 @@ test('version', async ({}, testInfo) => {
   await fs.outputFile(
     pathLib.join(cwd, 'cli.ts'),
     endent`
-      import self from '../src';
+      import self from '../../src';
 
       self({ version: '0.1.0' });
     `,

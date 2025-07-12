@@ -5,17 +5,23 @@ import {
 import { compact } from 'lodash-es';
 
 type Handler = (...args: unknown[]) => void | Promise<void>;
-type Option = { name: string; description?: string; defaultValue?: string };
+type Option = {
+  name: string;
+  description?: string;
+  defaultValue?: string;
+  choices?: string[];
+};
+type Command = {
+  name: string;
+  arguments?: string;
+  description?: string;
+  handler: Handler;
+  options: Option[];
+};
 type Config = {
   version: string;
   name: string;
-  commands: Array<{
-    name: string;
-    arguments?: string;
-    description?: string;
-    handler: Handler;
-    options: Option[];
-  }>;
+  commands: Command[];
   options: Option[];
   arguments: string;
   usage: string;
@@ -24,26 +30,27 @@ type Config = {
   defaultCommandName: string;
 };
 
-const applyOptions = (program, options = []) => {
+const applyOptions = (program, options: Option[] = []) => {
   if (!Array.isArray(options)) {
-    options = Object.entries(options).map(([name, option]) => ({
+    options = Object.entries<Option>(options).map(([name, option]) => ({
       name,
       ...option,
     }));
   }
 
   for (const option of options) {
-    const commanderOptions = new CommanderOption(
+    const commanderOption = new CommanderOption(
       option.name,
       option.description,
-      option.defaultValue,
     );
 
+    commanderOption.default(option.defaultValue);
+
     if (option.choices) {
-      commanderOptions.choices(option.choices);
+      commanderOption.choices(option.choices);
     }
 
-    program.addOption(commanderOptions);
+    program.addOption(commanderOption);
   }
 };
 
@@ -51,7 +58,7 @@ export default (config: Partial<Config> = {}) => {
   config = { commands: [], options: [], ...config };
 
   if (!Array.isArray(config.commands)) {
-    config.commands = Object.entries(config.commands).map(
+    config.commands = Object.entries<Command>(config.commands).map(
       ([name, command]) => ({ name, ...command }),
     );
   }
