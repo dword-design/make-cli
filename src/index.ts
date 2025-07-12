@@ -1,18 +1,27 @@
-import { Command, Option } from 'commander';
+import {
+  Command as CommanderCommand,
+  Option as CommanderOption,
+} from 'commander';
 import { compact } from 'lodash-es';
 
 type Handler = (...args: unknown[]) => void | Promise<void>;
-
-interface ConfigInput {
-  version?: string;
-  name?: string;
-  commands?: Array<{ name: string, arguments?: string, description?: string, handler: Handler }>;
-  options?: Array<{ name: string, description?: string, defaultValue?: string }>;
-  arguments?: string;
-  usage?: string;
-  allowUnknownOption?: boolean;
-  action?: Handler;
-  defaultCommandName?: string;
+type Option = { name: string; description?: string; defaultValue?: string };
+type Config = {
+  version: string;
+  name: string;
+  commands: Array<{
+    name: string;
+    arguments?: string;
+    description?: string;
+    handler: Handler;
+    options: Option[];
+  }>;
+  options: Option[];
+  arguments: string;
+  usage: string;
+  allowUnknownOption: boolean;
+  action: Handler;
+  defaultCommandName: string;
 };
 
 const applyOptions = (program, options = []) => {
@@ -24,7 +33,7 @@ const applyOptions = (program, options = []) => {
   }
 
   for (const option of options) {
-    const commanderOptions = new Option(
+    const commanderOptions = new CommanderOption(
       option.name,
       option.description,
       option.defaultValue,
@@ -38,7 +47,7 @@ const applyOptions = (program, options = []) => {
   }
 };
 
-export default (config: ConfigInput = {}) => {
+export default (config: Partial<Config> = {}) => {
   config = { commands: [], options: [], ...config };
 
   if (!Array.isArray(config.commands)) {
@@ -47,7 +56,7 @@ export default (config: ConfigInput = {}) => {
     );
   }
 
-  const program = new Command();
+  const program = new CommanderCommand();
 
   if (config.version) {
     program.version(config.version);
