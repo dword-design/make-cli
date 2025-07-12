@@ -1,89 +1,120 @@
+import pathLib from 'node:path';
+
+import { expect, test } from '@playwright/test';
 import endent from 'endent';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
 
-const outputCliFile = content =>
-  fs.outputFile(
-    'cli.ts',
-    endent`
-      import self from '../src'
+test('action', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
 
-      ${content}
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
+      self({ action: () => console.log('foo') });
     `,
-    { mode: '755' },
   );
 
-export default {
-  action: async () => {
-    await outputCliFile("self({ action: () => console.log('foo') })");
-    const { stdout } = await execaCommand('tsx cli.ts');
+  const { stdout } = await execaCommand('tsx cli.ts', { cwd });
+  expect(stdout).toEqual('foo');
+});
 
-    expect(stdout).toEqual(
-      'foo',
-    );
-  },
-  'arguments: mandatory': async () => {
-    await outputCliFile(endent`
+test('arguments: mandatory', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         arguments: '<first> <second>',
         action: (first, second) => { console.log(first); console.log(second) },
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts foo bar');
-    expect(stdout)
-      .toEqual(endent`
-        foo
-        bar
-      `);
-  },
-  'arguments: optional not set': async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts foo bar', { cwd });
+
+  expect(stdout).toEqual(endent`
+    foo
+    bar
+  `);
+});
+
+test('arguments: optional not set', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         arguments: '[arg]',
         action: arg => console.log(arg),
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts');
-    expect(stdout).toEqual(
-      'undefined',
-    );
-  },
-  'arguments: optional set': async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts', { cwd });
+  expect(stdout).toEqual('undefined');
+});
+
+test('arguments: optional set', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         arguments: '[arg]',
         action: arg => console.log(arg),
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts foo');
-    expect(stdout).toEqual(
-      'foo',
-    );
-  },
-  'async error': async () => {
-    await outputCliFile(endent`
-      const run = async () => {
-        try {
-          await self({
-            action: async () => {
-              await new Promise(resolve => setTimeout(resolve, 100))
-              throw new Error('foo')
-            },
-          })
-        } catch (error) {
-          console.log(error.message)
-          process.exit(1)
-        }
+  const { stdout } = await execaCommand('tsx cli.ts foo', { cwd });
+  expect(stdout).toEqual('foo');
+});
+
+test('async error', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
+      try {
+        await self({
+          action: async () => {
+            await new Promise(resolve => setTimeout(resolve, 100));
+            throw new Error('foo');
+          },
+        });
+      } catch (error) {
+        console.log(error.message);
+        process.exit(1);
       }
-      run()
-    `);
-    await expect(execaCommand('tsx cli.ts')).rejects.toThrow('foo');
-  },
-  'commands: arguments': async () => {
-    await outputCliFile(endent`
+    `,
+  );
+
+  await expect(execaCommand('tsx cli.ts', { cwd })).rejects.toThrow('foo');
+});
+
+test('commands: arguments', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         commands: [
           {
@@ -92,14 +123,22 @@ export default {
             handler: arg => console.log(arg)
           }
         ],
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts build foo');
-    expect(stdout).toEqual('foo');
-  },
-  'commands: default': async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts build foo', { cwd });
+  expect(stdout).toEqual('foo');
+});
+
+test('commands: default', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         commands: [
           {
@@ -108,40 +147,54 @@ export default {
           }
         ],
         defaultCommandName: 'build',
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts');
-    expect(stdout).toEqual(
-      'foo',
-    );
-  },
-  'commands: object': async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts', { cwd });
+  expect(stdout).toEqual('foo');
+});
+
+test('commands: object', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       await self({
         commands: {
           foo: { description: 'foo description' },
           bar: { description: 'bar description' },
         },
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts --help');
-    expect(stdout)
-      .toEqual(endent`
-        Usage: cli [options] [command]
+  const { stdout } = await execaCommand('tsx cli.ts --help', { cwd });
 
-        Options:
-          -h, --help      display help for command
+  expect(stdout).toEqual(endent`
+    Usage: cli [options] [command]
 
-        Commands:
-          foo             foo description
-          bar             bar description
-          help [command]  display help for command
-      `);
-  },
-  'commands: options': async () => {
-    await outputCliFile(endent`
+    Options:
+      -h, --help      display help for command
+
+    Commands:
+      foo             foo description
+      bar             bar description
+      help [command]  display help for command
+  `);
+});
+
+test('commands: options', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         commands: [
           {
@@ -152,14 +205,25 @@ export default {
             handler: options => console.log(options.value),
           }
         ],
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts build --value foo');
-    expect(stdout).toEqual('foo');
-  },
-  'commands: valid': async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts build --value foo', {
+    cwd,
+  });
+
+  expect(stdout).toEqual('foo');
+});
+
+test('commands: valid', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         commands: [
           {
@@ -167,14 +231,22 @@ export default {
             handler: () => console.log('foo'),
           }
         ],
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts build');
-    expect(stdout).toEqual('foo');
-  },
-  help: async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts build', { cwd });
+  expect(stdout).toEqual('foo');
+});
+
+test('help', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         version: '0.1.0',
         name: 'the name',
@@ -185,83 +257,125 @@ export default {
             description: 'Builds the app',
           },
         ],
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts --help');
-    expect(stdout)
-      .toEqual(endent`
-        Usage: the name the usage
+  const { stdout } = await execaCommand('tsx cli.ts --help', { cwd });
 
-        Options:
-          -V, --version   output the version number
-          -h, --help      display help for command
+  expect(stdout).toEqual(endent`
+    Usage: the name the usage
 
-        Commands:
-          build           Builds the app
-          help [command]  display help for command
-      `);
-  },
-  'option choices': async () => {
-    await outputCliFile(endent`
+    Options:
+      -V, --version   output the version number
+      -h, --help      display help for command
+
+    Commands:
+      build           Builds the app
+      help [command]  display help for command
+  `);
+});
+
+test('option choices', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         options: [
           { name: '-f, --foo <foo>', choices: ['bar', 'baz'] },
         ],
-      })
-    `);
+      });
+    `,
+  );
 
-    await expect(execaCommand('tsx cli.ts --foo xyz')).rejects.toThrow(
-      "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
-    );
-  },
-  options: async () => {
-    await outputCliFile(endent`
+  await expect(execaCommand('tsx cli.ts --foo xyz', { cwd })).rejects.toThrow(
+    "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
+  );
+});
+
+test('options', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         options: [
           { name: '--value <value>' },
         ],
         action: options => console.log(options.value),
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts --value foo');
-    expect(stdout).toEqual('foo');
-  },
-  'options: object': async () => {
-    await outputCliFile(endent`
+  const { stdout } = await execaCommand('tsx cli.ts --value foo', { cwd });
+  expect(stdout).toEqual('foo');
+});
+
+test('options: object', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       await self({
         options: {
           '-y, --yes': { description: 'foo bar' },
         },
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts --help');
-    expect(stdout)
-      .toEqual(endent`
-        Usage: cli [options]
+  const { stdout } = await execaCommand('tsx cli.ts --help', { cwd });
 
-        Options:
-          -y, --yes   foo bar
-          -h, --help  display help for command
-      `);
-  },
-  'unknown option': async () => {
-    await outputCliFile(endent`
+  expect(stdout).toEqual(endent`
+    Usage: cli [options]
+
+    Options:
+      -y, --yes   foo bar
+      -h, --help  display help for command
+  `);
+});
+
+test('unknown option', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
       self({
         allowUnknownOption: true,
         action: (options, command) => console.log(command.args),
-      })
-    `);
+      });
+    `,
+  );
 
-    const { stdout } = await execaCommand('tsx cli.ts --foo');
-    expect(stdout).toEqual("[ '--foo' ]");
-  },
-  version: async () => {
-    await outputCliFile("self({ version: '0.1.0' })");
+  const { stdout } = await execaCommand('tsx cli.ts --foo', { cwd });
+  expect(stdout).toEqual("[ '--foo' ]");
+});
 
-    const { stdout } = await execaCommand('tsx cli.ts --version');
-    expect(stdout).toEqual('0.1.0');
-  },
-};
+test('version', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../src';
+
+      self({ version: '0.1.0' });
+    `,
+  );
+
+  const { stdout } = await execaCommand('tsx cli.ts --version', { cwd });
+  expect(stdout).toEqual('0.1.0');
+});

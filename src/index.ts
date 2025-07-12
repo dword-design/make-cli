@@ -1,10 +1,26 @@
-import { compact } from 'lodash-es';
 import { Command, Option } from 'commander';
+import { compact } from 'lodash-es';
+
+type Handler = (...args: unknown[]) => void | Promise<void>;
+
+interface ConfigInput {
+  version?: string;
+  name?: string;
+  commands?: Array<{ name: string, arguments?: string, description?: string, handler: Handler }>;
+  options?: Array<{ name: string, description?: string, defaultValue?: string }>;
+  arguments?: string;
+  usage?: string;
+  allowUnknownOption?: boolean;
+  action?: Handler;
+  defaultCommandName?: string;
+};
 
 const applyOptions = (program, options = []) => {
   if (!Array.isArray(options)) {
-    options =
-      Object.entries(options).map(([name, option]) => ({ name, ...option }));
+    options = Object.entries(options).map(([name, option]) => ({
+      name,
+      ...option,
+    }));
   }
 
   for (const option of options) {
@@ -22,11 +38,13 @@ const applyOptions = (program, options = []) => {
   }
 };
 
-export default (config = {}) => {
+export default (config: ConfigInput = {}) => {
   config = { commands: [], options: [], ...config };
 
   if (!Array.isArray(config.commands)) {
-    config.commands = Object.entries(config.commands).map(([name, command]) => ({ name, ...command }));
+    config.commands = Object.entries(config.commands).map(
+      ([name, command]) => ({ name, ...command }),
+    );
   }
 
   const program = new Command();
