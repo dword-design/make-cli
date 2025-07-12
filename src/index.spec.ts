@@ -1,15 +1,12 @@
-import { endent, property } from '@dword-design/functions';
+import endent from 'endent';
 import { execaCommand } from 'execa';
 import fs from 'fs-extra';
-import withLocalTmpDir from 'with-local-tmp-dir';
 
 const outputCliFile = content =>
   fs.outputFile(
-    'cli.js',
+    'cli.ts',
     endent`
-      #!/usr/bin/env node
-
-      import self from '../src/index.js'
+      import self from '../src'
 
       ${content}
     `,
@@ -19,13 +16,11 @@ const outputCliFile = content =>
 export default {
   action: async () => {
     await outputCliFile("self({ action: () => console.log('foo') })");
+    const { stdout } = await execaCommand('tsx cli.ts');
 
-    expect(execaCommand('./cli.js') |> await |> property('stdout')).toEqual(
+    expect(stdout).toEqual(
       'foo',
     );
-  },
-  async afterEach() {
-    await this.resetWithLocalTmpDir();
   },
   'arguments: mandatory': async () => {
     await outputCliFile(endent`
@@ -35,7 +30,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js foo bar') |> await |> property('stdout'))
+    const { stdout } = await execaCommand('tsx cli.ts foo bar');
+    expect(stdout)
       .toEqual(endent`
         foo
         bar
@@ -49,7 +45,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js') |> await |> property('stdout')).toEqual(
+    const { stdout } = await execaCommand('tsx cli.ts');
+    expect(stdout).toEqual(
       'undefined',
     );
   },
@@ -61,7 +58,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js foo') |> await |> property('stdout')).toEqual(
+    const { stdout } = await execaCommand('tsx cli.ts foo');
+    expect(stdout).toEqual(
       'foo',
     );
   },
@@ -82,16 +80,7 @@ export default {
       }
       run()
     `);
-
-    await expect(execaCommand('./cli.js')).rejects.toThrow('foo');
-  },
-  async beforeEach() {
-    this.resetWithLocalTmpDir = await withLocalTmpDir();
-
-    await fs.outputFile(
-      '.babelrc.json',
-      JSON.stringify({ extends: '@dword-design/babel-config' }),
-    );
+    await expect(execaCommand('tsx cli.ts')).rejects.toThrow('foo');
   },
   'commands: arguments': async () => {
     await outputCliFile(endent`
@@ -106,9 +95,8 @@ export default {
       })
     `);
 
-    expect(
-      execaCommand('./cli.js build foo') |> await |> property('stdout'),
-    ).toEqual('foo');
+    const { stdout } = await execaCommand('tsx cli.ts build foo');
+    expect(stdout).toEqual('foo');
   },
   'commands: default': async () => {
     await outputCliFile(endent`
@@ -123,7 +111,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js') |> await |> property('stdout')).toEqual(
+    const { stdout } = await execaCommand('tsx cli.ts');
+    expect(stdout).toEqual(
       'foo',
     );
   },
@@ -137,7 +126,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js --help') |> await |> property('stdout'))
+    const { stdout } = await execaCommand('tsx cli.ts --help');
+    expect(stdout)
       .toEqual(endent`
         Usage: cli [options] [command]
 
@@ -165,9 +155,8 @@ export default {
       })
     `);
 
-    expect(
-      execaCommand('./cli.js build --value foo') |> await |> property('stdout'),
-    ).toEqual('foo');
+    const { stdout } = await execaCommand('tsx cli.ts build --value foo');
+    expect(stdout).toEqual('foo');
   },
   'commands: valid': async () => {
     await outputCliFile(endent`
@@ -181,9 +170,8 @@ export default {
       })
     `);
 
-    expect(
-      execaCommand('./cli.js build') |> await |> property('stdout'),
-    ).toEqual('foo');
+    const { stdout } = await execaCommand('tsx cli.ts build');
+    expect(stdout).toEqual('foo');
   },
   help: async () => {
     await outputCliFile(endent`
@@ -200,7 +188,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js --help') |> await |> property('stdout'))
+    const { stdout } = await execaCommand('tsx cli.ts --help');
+    expect(stdout)
       .toEqual(endent`
         Usage: the name the usage
 
@@ -222,7 +211,7 @@ export default {
       })
     `);
 
-    await expect(execaCommand('./cli.js --foo xyz')).rejects.toThrow(
+    await expect(execaCommand('tsx cli.ts --foo xyz')).rejects.toThrow(
       "error: option '-f, --foo <foo>' argument 'xyz' is invalid. Allowed choices are bar, baz.",
     );
   },
@@ -236,9 +225,8 @@ export default {
       })
     `);
 
-    expect(
-      execaCommand('./cli.js --value foo') |> await |> property('stdout'),
-    ).toEqual('foo');
+    const { stdout } = await execaCommand('tsx cli.ts --value foo');
+    expect(stdout).toEqual('foo');
   },
   'options: object': async () => {
     await outputCliFile(endent`
@@ -249,7 +237,8 @@ export default {
       })
     `);
 
-    expect(execaCommand('./cli.js --help') |> await |> property('stdout'))
+    const { stdout } = await execaCommand('tsx cli.ts --help');
+    expect(stdout)
       .toEqual(endent`
         Usage: cli [options]
 
@@ -266,15 +255,13 @@ export default {
       })
     `);
 
-    expect(
-      execaCommand('./cli.js --foo') |> await |> property('stdout'),
-    ).toEqual("[ '--foo' ]");
+    const { stdout } = await execaCommand('tsx cli.ts --foo');
+    expect(stdout).toEqual("[ '--foo' ]");
   },
   version: async () => {
     await outputCliFile("self({ version: '0.1.0' })");
 
-    expect(
-      execaCommand('./cli.js --version') |> await |> property('stdout'),
-    ).toEqual('0.1.0');
+    const { stdout } = await execaCommand('tsx cli.ts --version');
+    expect(stdout).toEqual('0.1.0');
   },
 };

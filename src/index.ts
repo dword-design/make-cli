@@ -1,10 +1,10 @@
-import { compact, join, mapValues, values } from '@dword-design/functions';
+import { compact } from 'lodash-es';
 import { Command, Option } from 'commander';
 
 const applyOptions = (program, options = []) => {
   if (!Array.isArray(options)) {
     options =
-      options |> mapValues((option, name) => ({ name, ...option })) |> values;
+      Object.entries(options).map(([name, option]) => ({ name, ...option }));
   }
 
   for (const option of options) {
@@ -26,10 +26,7 @@ export default (config = {}) => {
   config = { commands: [], options: [], ...config };
 
   if (!Array.isArray(config.commands)) {
-    config.commands =
-      config.commands
-      |> mapValues((command, name) => ({ name, ...command }))
-      |> values;
+    config.commands = Object.entries(config.commands).map(([name, command]) => ({ name, ...command }));
   }
 
   const program = new Command();
@@ -62,7 +59,7 @@ export default (config = {}) => {
 
   for (const command of config.commands) {
     const cmd = program.command(
-      [command.name, command.arguments] |> compact |> join(' '),
+      compact([command.name, command.arguments]).join(' '),
     );
 
     cmd.description(command.description);
