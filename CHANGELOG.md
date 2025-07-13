@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/dword-design/make-cli/compare/v4.0.2...v4.0.3) (2025-07-13)
+
+
+### Bug Fixes
+
+* remove unneeded type ([1ce5db8](https://github.com/dword-design/make-cli/commit/1ce5db85b141d94b4e0031879d2e777d89b9e8a9))
+
 ## [4.0.2](https://github.com/dword-design/make-cli/compare/v4.0.1...v4.0.2) (2025-07-13)
 
 
