@@ -100,7 +100,7 @@ const getNormalizedCommands = (commands?: CommandsInput): Command[] => {
   if (Array.isArray(commands)) {
     return commands.map(command => ({
       ...command,
-      handler: toVoidReturning(command.handler),
+      handler: ignoreReturn(command.handler),
       options: getNormalizedOptions(command.options),
     }));
   }
@@ -108,16 +108,16 @@ const getNormalizedCommands = (commands?: CommandsInput): Command[] => {
   return Object.entries(commands).map(([name, command]) => ({
     name,
     ...(typeof command === 'function'
-      ? { handler: toVoidReturning(command), options: [] }
+      ? { handler: ignoreReturn(command), options: [] }
       : {
           ...command,
-          handler: toVoidReturning(command.handler),
+          handler: ignoreReturn(command.handler),
           options: getNormalizedOptions(command.options),
         }),
   }));
 };
 
-const toVoidReturning =
+const ignoreReturn =
   func =>
   (...args) => {
     const result = func(...args);
@@ -134,7 +134,7 @@ export default (configInput: ConfigInput = {}) => {
       commands: getNormalizedCommands(configInput.commands),
       options: getNormalizedOptions(configInput.options),
       ...(configInput.action && {
-        action: toVoidReturning(configInput.action),
+        action: ignoreReturn(configInput.action),
       }),
     },
     { allowUnknownOption: false },
