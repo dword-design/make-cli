@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/dword-design/make-cli/compare/v4.0.0...v4.0.1) (2025-07-13)
+
+
+### Bug Fixes
+
+* lock file maintenance ([#169](https://github.com/dword-design/make-cli/issues/169)) ([a5a5244](https://github.com/dword-design/make-cli/commit/a5a5244970a91b10a548075c63cee5bde881ea76))
+* update config files ([f5d413e](https://github.com/dword-design/make-cli/commit/f5d413e38116d4ca000dcf3952ae5c26a292b215))
+
 # [4.0.0](https://github.com/dword-design/make-cli/compare/v3.0.5...v4.0.0) (2024-03-05)
 
 
