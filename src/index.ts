@@ -133,9 +133,7 @@ export default (configInput: ConfigInput = {}) => {
       ...configInput,
       commands: getNormalizedCommands(configInput.commands),
       options: getNormalizedOptions(configInput.options),
-      ...(configInput.action && {
-        action: ignoreReturn(configInput.action),
-      }),
+      ...(configInput.action && { action: ignoreReturn(configInput.action) }),
     },
     { allowUnknownOption: false },
   );
