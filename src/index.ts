@@ -4,6 +4,9 @@ import {
   Option as CommanderOption,
 } from 'commander';
 import { compact } from 'lodash-es';
+import pIsPromise from 'p-is-promise';
+
+export type HandlerInput = (...args: unknown[]) => unknown;
 
 export type Handler = (...args: unknown[]) => void | Promise<void>;
 
@@ -34,8 +37,9 @@ export type Config = {
   defaultCommandName?: string;
 };
 
-export type CommandObjectInput = Omit<Command, 'options'> & {
+export type CommandObjectInput = Omit<Command, 'options' | 'handler'> & {
   options?: OptionsInput;
+  handler: HandlerInput;
 };
 
 export type CommandObjectInObjectInput = Omit<CommandObjectInput, 'name'> &
@@ -51,9 +55,10 @@ export type OptionInObjectInput = Omit<Option, 'name'> &
   Partial<Pick<Option, 'name'>>;
 
 export type OptionsInput = Option[] | Record<string, OptionInObjectInput>;
-type ConfigInput = Omit<Partial<Config>, 'commands' | 'options'> & {
+type ConfigInput = Omit<Partial<Config>, 'commands' | 'options' | 'action'> & {
   commands?: CommandsInput;
   options?: OptionsInput;
+  action?: HandlerInput;
 };
 
 const applyOptions = (program, options: Option[] = []) => {
@@ -95,6 +100,7 @@ const getNormalizedCommands = (commands?: CommandsInput): Command[] => {
   if (Array.isArray(commands)) {
     return commands.map(command => ({
       ...command,
+      handler: toVoidReturning(command.handler),
       options: getNormalizedOptions(command.options),
     }));
   }
@@ -102,10 +108,24 @@ const getNormalizedCommands = (commands?: CommandsInput): Command[] => {
   return Object.entries(commands).map(([name, command]) => ({
     name,
     ...(typeof command === 'function'
-      ? { handler: command, options: [] }
-      : { ...command, options: getNormalizedOptions(command.options) }),
+      ? { handler: toVoidReturning(command), options: [] }
+      : {
+          ...command,
+          handler: toVoidReturning(command.handler),
+          options: getNormalizedOptions(command.options),
+        }),
   }));
 };
+
+const toVoidReturning =
+  func =>
+  (...args) => {
+    const result = func(...args);
+
+    if (pIsPromise(result)) {
+      return Promise.resolve();
+    }
+  };
 
 export default (configInput: ConfigInput = {}) => {
   const config: Config = defu(
@@ -113,6 +133,9 @@ export default (configInput: ConfigInput = {}) => {
       ...configInput,
       commands: getNormalizedCommands(configInput.commands),
       options: getNormalizedOptions(configInput.options),
+      ...(configInput.action && {
+        action: toVoidReturning(configInput.action),
+      }),
     },
     { allowUnknownOption: false },
   );
