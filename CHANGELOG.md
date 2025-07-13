@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/dword-design/make-cli/compare/v4.0.1...v4.0.2) (2025-07-13)
+
+
+### Bug Fixes
+
+* type fixes ([5beefbe](https://github.com/dword-design/make-cli/commit/5beefbebeeeb7ae0bdd760bef849811da87a7b07))
+
 ## [4.0.1](https://github.com/dword-design/make-cli/compare/v4.0.0...v4.0.1) (2025-07-13)
 
 
