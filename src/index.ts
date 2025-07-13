@@ -5,12 +5,14 @@ import {
 import { compact } from 'lodash-es';
 
 export type Handler = (...args: unknown[]) => void | Promise<void>;
+
 export type Option = {
   name: string;
   description?: string;
   defaultValue?: unknown;
   choices?: string[];
 };
+
 export type Command = {
   name: string;
   arguments?: string;
@@ -18,6 +20,7 @@ export type Command = {
   handler: Handler;
   options: Option[];
 };
+
 export type Config = {
   version: string;
   name: string;
