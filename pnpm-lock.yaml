@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@dword-design/defu':
+        specifier: ^1.0.1
+        version: 1.0.1
       commander:
         specifier: ^12.0.0
         version: 12.1.0
@@ -221,8 +224,8 @@ packages:
   '@dword-design/dedent@0.7.0':
     resolution: {integrity: sha512-OFmAmzKiDUh9m7WRMYcoEOPI7b5tS5hdqQmtKDwF+ZssVJv8a+GHo9VOtFsmlw3h8Roh/9QzFWIsjSFZyQUMdg==}
 
-  '@dword-design/defu@1.0.0':
-    resolution: {integrity: sha512-TSeItFcOEB9xUlw745+l9M+uU9bn6SaOH2q4uy2IFtmHbPYzLHsFEaaBvScD1XqKnxVyqOK4UtnFibv8Ja1ffA==}
+  '@dword-design/defu@1.0.1':
+    resolution: {integrity: sha512-KspLsJ8KoTlED0dnDXlKg8vMpY1OvS1d9BYpwuojIMcKIMTouw8sU2bJIM8G2VD497vOzAevrEJaXBHxmhoCeA==}
     engines: {node: '>=18'}
 
   '@dword-design/depcheck-parser-sass@4.0.4':
@@ -4314,7 +4317,7 @@ snapshots:
       '@commitlint/config-conventional': 18.6.3
       '@dword-design/base-config-node': 3.0.17(@vue/compiler-core@3.5.17)(esbuild@0.25.6)
       '@dword-design/ci': 4.0.6
-      '@dword-design/defu': 1.0.0
+      '@dword-design/defu': 1.0.1
       '@dword-design/eslint-config': 7.0.7(@typescript-eslint/parser@8.36.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@typescript-eslint/utils@8.36.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(jiti@2.4.2)(typescript@5.8.3)(vue-eslint-parser@10.2.0(eslint@9.31.0(jiti@2.4.2)))
       '@dword-design/personal-data': 2.0.3
       '@semantic-release/changelog': 6.0.3(semantic-release@22.0.12(typescript@5.8.3))
@@ -4385,7 +4388,7 @@ snapshots:
     dependencies:
       babel-plugin-add-module-exports: 1.0.4
 
-  '@dword-design/defu@1.0.0':
+  '@dword-design/defu@1.0.1':
     dependencies:
       defu: 6.1.4
 
@@ -4470,7 +4473,7 @@ snapshots:
   '@dword-design/eslint-plugin-import-alias@6.0.3':
     dependencies:
       '@babel/core': 7.28.0
-      '@dword-design/defu': 1.0.0
+      '@dword-design/defu': 1.0.1
       babel-plugin-module-resolver: 5.0.2
     transitivePeerDependencies:
       - supports-color

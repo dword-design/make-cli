@@ -1,3 +1,4 @@
+import defu from '@dword-design/defu';
 import {
   Command as CommanderCommand,
   Option as CommanderOption,
@@ -22,25 +23,40 @@ export type Command = {
 };
 
 export type Config = {
-  version: string;
-  name: string;
+  version?: string;
+  name?: string;
   commands: Command[];
   options: Option[];
-  arguments: string;
-  usage: string;
+  arguments?: string;
+  usage?: string;
   allowUnknownOption: boolean;
-  action: Handler;
-  defaultCommandName: string;
+  action?: Handler;
+  defaultCommandName?: string;
+};
+
+export type CommandObjectInput = Omit<Command, 'options'> & {
+  options?: OptionsInput;
+};
+
+export type CommandObjectInObjectInput = Omit<Option, 'name'> &
+  Partial<Pick<Option, 'name'>>;
+
+export type CommandInObjectInput = CommandObjectInput | Handler;
+
+export type CommandsInput =
+  | CommandObjectInput[]
+  | Record<string, CommandInObjectInput>;
+
+export type OptionInObjectInput = Omit<Option, 'name'> &
+  Partial<Pick<Option, 'name'>>;
+
+export type OptionsInput = Option[] | Record<string, OptionInObjectInput>;
+type ConfigInput = Omit<Partial<Config>, 'commands' | 'options'> & {
+  commands?: CommandsInput;
+  options?: OptionsInput;
 };
 
 const applyOptions = (program, options: Option[] = []) => {
-  if (!Array.isArray(options)) {
-    options = Object.entries<Option>(options).map(([name, option]) => ({
-      name,
-      ...option,
-    }));
-  }
-
   for (const option of options) {
     const commanderOption = new CommanderOption(
       option.name,
@@ -57,16 +73,49 @@ const applyOptions = (program, options: Option[] = []) => {
   }
 };
 
-type ConfigInput = Partial<Config>;
-
-export default (config: ConfigInput = {}) => {
-  config = { commands: [], options: [], ...config };
-
-  if (!Array.isArray(config.commands)) {
-    config.commands = Object.entries<Command>(config.commands).map(
-      ([name, command]) => ({ name, ...command }),
-    );
+const getNormalizedOptions = (options?: OptionsInput): Option[] => {
+  if (options === undefined) {
+    return [];
   }
+
+  if (Array.isArray(options)) {
+    return options;
+  }
+
+  return Object.entries(options).map(([name, option]) =>
+    defu(option, { name }),
+  );
+};
+
+const getNormalizedCommands = (commands?: CommandsInput): Command[] => {
+  if (commands === undefined) {
+    return [];
+  }
+
+  if (Array.isArray(commands)) {
+    return commands.map(command => ({
+      ...command,
+      options: getNormalizedOptions(command.options),
+    }));
+  }
+
+  return Object.entries(commands).map(([name, command]) => ({
+    name,
+    ...(typeof command === 'function'
+      ? { handler: command, options: [] }
+      : { ...command, options: getNormalizedOptions(command.options) }),
+  }));
+};
+
+export default (configInput: ConfigInput = {}) => {
+  const config: Config = defu(
+    {
+      ...configInput,
+      commands: getNormalizedCommands(configInput.commands),
+      options: getNormalizedOptions(configInput.options),
+    },
+    { allowUnknownOption: false },
+  );
 
   const program = new CommanderCommand();
 
