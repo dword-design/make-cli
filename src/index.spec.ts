@@ -59,7 +59,11 @@ test('arguments: optional not set', async ({}, testInfo) => {
     `,
   );
 
-  const { stdout } = await execaCommand('tsx cli.ts', { cwd });
+  const { stdout } = await execaCommand('tsx cli.ts', {
+    cwd,
+    env: { FORCE_COLOR: '0' },
+  });
+
   expect(stdout).toEqual('undefined');
 });
 
@@ -352,15 +356,20 @@ test('unknown option', async ({}, testInfo) => {
     pathLib.join(cwd, 'cli.ts'),
     endent`
       import self from '../../src';
+      import type { Command } from '../../src';
 
       self({
         allowUnknownOption: true,
-        action: (options, command) => console.log(command.args),
+        action: (options, command: Command) => console.log(command.args),
       });
     `,
   );
 
-  const { stdout } = await execaCommand('tsx cli.ts --foo', { cwd });
+  const { stdout } = await execaCommand('tsx cli.ts --foo', {
+    cwd,
+    env: { FORCE_COLOR: '0' },
+  });
+
   expect(stdout).toEqual("[ '--foo' ]");
 });
 

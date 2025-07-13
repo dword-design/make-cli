@@ -4,21 +4,21 @@ import {
 } from 'commander';
 import { compact } from 'lodash-es';
 
-type Handler = (...args: unknown[]) => void | Promise<void>;
-type Option = {
+export type Handler = (...args: unknown[]) => void | Promise<void>;
+export type Option = {
   name: string;
   description?: string;
-  defaultValue?: string;
+  defaultValue?: unknown;
   choices?: string[];
 };
-type Command = {
+export type Command = {
   name: string;
   arguments?: string;
   description?: string;
   handler: Handler;
   options: Option[];
 };
-type Config = {
+export type Config = {
   version: string;
   name: string;
   commands: Command[];
@@ -54,7 +54,9 @@ const applyOptions = (program, options: Option[] = []) => {
   }
 };
 
-export default (config: Partial<Config> = {}) => {
+type ConfigInput = Partial<Config>;
+
+export default (config: ConfigInput = {}) => {
   config = { commands: [], options: [], ...config };
 
   if (!Array.isArray(config.commands)) {
