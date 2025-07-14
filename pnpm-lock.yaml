@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@dword-design/defu':
         specifier: ^1.0.1
-        version: 1.0.1
+        version: 1.0.3
       commander:
         specifier: ^12.0.0
         version: 12.1.0
@@ -227,8 +227,8 @@ packages:
   '@dword-design/dedent@0.7.0':
     resolution: {integrity: sha512-OFmAmzKiDUh9m7WRMYcoEOPI7b5tS5hdqQmtKDwF+ZssVJv8a+GHo9VOtFsmlw3h8Roh/9QzFWIsjSFZyQUMdg==}
 
-  '@dword-design/defu@1.0.1':
-    resolution: {integrity: sha512-KspLsJ8KoTlED0dnDXlKg8vMpY1OvS1d9BYpwuojIMcKIMTouw8sU2bJIM8G2VD497vOzAevrEJaXBHxmhoCeA==}
+  '@dword-design/defu@1.0.3':
+    resolution: {integrity: sha512-QEM8a6CPIrMvudnuNDwr3IxWJ0dcMKG9tgxt3zuPk/NmXV0ejk4qxQJ1PfquJwRzu59UsqNpUAACMG485VMIUA==}
     engines: {node: '>=18'}
 
   '@dword-design/depcheck-parser-sass@4.0.4':
@@ -2620,8 +2620,8 @@ packages:
     resolution: {integrity: sha512-pDjaLs54bftlqyCT7KRC9FfbAURfKVcQFnNNe5qp4RLEOpNGiGjdNTUgMsYKFqZd75WhI0tYxQMIbgnpDptPCw==}
     engines: {node: '>=14'}
 
-  make-cli@4.0.0:
-    resolution: {integrity: sha512-xA2cFJBd4qVax3oIWry1J2zPeiqGf611wF/uMf4dpQ3M1SGnQpkEUGRJb2ryU6uFaocBiGmQl7K7nvdUNXrA3Q==}
+  make-cli@4.0.6:
+    resolution: {integrity: sha512-PF/bFDfDrVfJSpSfg/JYYKl8WRaqJ5T16uZZ1a7hX14BW74JiKInGPLd/ihmLIgHkjb2fu5YTL1gwOIaWh828g==}
     engines: {node: '>=18'}
 
   make-dir@4.0.0:
@@ -4324,7 +4324,7 @@ snapshots:
       '@commitlint/config-conventional': 18.6.3
       '@dword-design/base-config-node': 3.0.17(@vue/compiler-core@3.5.17)(esbuild@0.25.6)
       '@dword-design/ci': 4.0.6
-      '@dword-design/defu': 1.0.1
+      '@dword-design/defu': 1.0.3
       '@dword-design/eslint-config': 7.0.7(@typescript-eslint/parser@8.36.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(@typescript-eslint/utils@8.36.0(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3))(jiti@2.4.2)(typescript@5.8.3)(vue-eslint-parser@10.2.0(eslint@9.31.0(jiti@2.4.2)))
       '@dword-design/personal-data': 2.0.3
       '@semantic-release/changelog': 6.0.3(semantic-release@22.0.12(typescript@5.8.3))
@@ -4354,7 +4354,7 @@ snapshots:
       is-ci: 3.0.1
       jiti: 2.4.2
       lodash-es: 4.17.21
-      make-cli: 4.0.0
+      make-cli: 4.0.6
       output-files: 2.0.32
       package-name-regex: 4.0.3
       parse-git-config: '@dword-design/parse-git-config@0.0.1'
@@ -4395,7 +4395,7 @@ snapshots:
     dependencies:
       babel-plugin-add-module-exports: 1.0.4
 
-  '@dword-design/defu@1.0.1':
+  '@dword-design/defu@1.0.3':
     dependencies:
       defu: 6.1.4
 
@@ -4480,7 +4480,7 @@ snapshots:
   '@dword-design/eslint-plugin-import-alias@6.0.3':
     dependencies:
       '@babel/core': 7.28.0
-      '@dword-design/defu': 1.0.1
+      '@dword-design/defu': 1.0.3
       babel-plugin-module-resolver: 5.0.2
     transitivePeerDependencies:
       - supports-color
@@ -6917,10 +6917,12 @@ snapshots:
       '@dword-design/functions': 4.1.7
       commander: 9.5.0
 
-  make-cli@4.0.0:
+  make-cli@4.0.6:
     dependencies:
-      '@dword-design/functions': 6.0.2
+      '@dword-design/defu': 1.0.3
       commander: 12.1.0
+      lodash-es: 4.17.21
+      p-is-promise: 4.0.0
 
   make-dir@4.0.0:
     dependencies:
