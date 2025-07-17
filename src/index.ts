@@ -45,7 +45,7 @@ export type CommandObjectInput = Omit<Command, 'options' | 'handler'> & {
 export type CommandObjectInObjectInput = Omit<CommandObjectInput, 'name'> &
   Partial<Pick<CommandObjectInput, 'name'>>;
 
-export type CommandInObjectInput = CommandObjectInObjectInput | Handler;
+export type CommandInObjectInput = CommandObjectInObjectInput | HandlerInput;
 
 export type CommandsInput =
   | CommandObjectInput[]
