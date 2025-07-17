@@ -1,3 +1,10 @@
+## [4.0.7](https://github.com/dword-design/make-cli/compare/v4.0.6...v4.0.7) (2025-07-17)
+
+
+### Bug Fixes
+
+* fix handler input ([07c5f91](https://github.com/dword-design/make-cli/commit/07c5f912c4f51384439ce0745b438ecb77756af2))
+
 ## [4.0.6](https://github.com/dword-design/make-cli/compare/v4.0.5...v4.0.6) (2025-07-13)
 
 
