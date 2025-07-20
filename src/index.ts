@@ -6,9 +6,9 @@ import {
 import { compact } from 'lodash-es';
 import pIsPromise from 'p-is-promise';
 
-export type HandlerInput = (...args: unknown[]) => unknown;
+export type HandlerUnknownReturn = (...args: unknown[]) => unknown;
 
-export type Handler = (...args: unknown[]) => void | Promise<void>;
+export type HandlerNoReturn = (...args: unknown[]) => void | Promise<void>;
 
 export type Option = {
   name: string;
@@ -21,7 +21,7 @@ export type Command = {
   name: string;
   arguments?: string;
   description?: string;
-  handler: Handler;
+  handler: HandlerNoReturn;
   options: Option[];
 };
 
@@ -33,32 +33,37 @@ export type Config = {
   arguments?: string;
   usage?: string;
   allowUnknownOption: boolean;
-  action?: Handler;
+  action?: HandlerNoReturn;
   defaultCommandName?: string;
 };
 
-export type CommandObjectInput = Omit<Command, 'options' | 'handler'> & {
-  options?: OptionsInput;
-  handler: HandlerInput;
+export type PartialCommandObject = Omit<Command, 'options' | 'handler'> & {
+  options?: PartialOptions;
+  handler: HandlerUnknownReturn;
 };
 
-export type CommandObjectInObjectInput = Omit<CommandObjectInput, 'name'> &
-  Partial<Pick<CommandObjectInput, 'name'>>;
+export type PartialCommandObjectInObject = Omit<PartialCommandObject, 'name'> &
+  Partial<Pick<PartialCommandObject, 'name'>>;
 
-export type CommandInObjectInput = CommandObjectInObjectInput | HandlerInput;
+export type PartialCommandInObject =
+  | PartialCommandObjectInObject
+  | HandlerUnknownReturn;
 
-export type CommandsInput =
-  | CommandObjectInput[]
-  | Record<string, CommandInObjectInput>;
+export type PartialCommands =
+  | PartialCommandObject[]
+  | Record<string, PartialCommandInObject>;
 
-export type OptionInObjectInput = Omit<Option, 'name'> &
+export type PartialOptionInObject = Omit<Option, 'name'> &
   Partial<Pick<Option, 'name'>>;
 
-export type OptionsInput = Option[] | Record<string, OptionInObjectInput>;
-type ConfigInput = Omit<Partial<Config>, 'commands' | 'options' | 'action'> & {
-  commands?: CommandsInput;
-  options?: OptionsInput;
-  action?: HandlerInput;
+export type PartialOptions = Option[] | Record<string, PartialOptionInObject>;
+type PartialConfig = Omit<
+  Partial<Config>,
+  'commands' | 'options' | 'action'
+> & {
+  commands?: PartialCommands;
+  options?: PartialOptions;
+  action?: HandlerUnknownReturn;
 };
 
 const applyOptions = (program, options: Option[] = []) => {
@@ -78,7 +83,7 @@ const applyOptions = (program, options: Option[] = []) => {
   }
 };
 
-const getNormalizedOptions = (options?: OptionsInput): Option[] => {
+const getNormalizedOptions = (options?: PartialOptions): Option[] => {
   if (options === undefined) {
     return [];
   }
@@ -92,7 +97,7 @@ const getNormalizedOptions = (options?: OptionsInput): Option[] => {
   );
 };
 
-const getNormalizedCommands = (commands?: CommandsInput): Command[] => {
+const getNormalizedCommands = (commands?: PartialCommands): Command[] => {
   if (commands === undefined) {
     return [];
   }
@@ -127,7 +132,7 @@ const ignoreReturn =
     }
   };
 
-export default (configInput: ConfigInput = {}) => {
+export default (configInput: PartialConfig = {}) => {
   const config: Config = defu(
     {
       ...configInput,
