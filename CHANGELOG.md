@@ -1,3 +1,10 @@
+## [4.0.8](https://github.com/dword-design/make-cli/compare/v4.0.7...v4.0.8) (2025-07-20)
+
+
+### Bug Fixes
+
+* rename types ([8526577](https://github.com/dword-design/make-cli/commit/8526577b294e0f4239bee2178f2c7be8603a9645))
+
 ## [4.0.7](https://github.com/dword-design/make-cli/compare/v4.0.6...v4.0.7) (2025-07-17)
 
 
