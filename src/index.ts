@@ -6,13 +6,13 @@ import {
 import { compact } from 'lodash-es';
 import pIsPromise from 'p-is-promise';
 
-export type HandlerUnknownReturn = <TArgs extends unknown[], TResult>(
-  ...args: TArgs
-) => TResult;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type HandlerUnknownReturn = (...args: any[]) => any;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
-export type HandlerNoReturn = <TArgs extends unknown[]>(
-  ...args: TArgs
-) => void | Promise<void>;
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export type HandlerNoReturn = (...args: any[]) => void | Promise<void>;
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 export type Option = {
   name: string;
@@ -140,7 +140,7 @@ const ignoreReturn =
 export default <TPartialConfig extends PartialConfig>(
   configInput: TPartialConfig,
 ) => {
-  const config: Config = defu(
+  const config = defu(
     {
       ...configInput,
       commands: getNormalizedCommands(configInput.commands),
