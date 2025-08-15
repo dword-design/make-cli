@@ -6,9 +6,13 @@ import {
 import { compact } from 'lodash-es';
 import pIsPromise from 'p-is-promise';
 
-export type HandlerUnknownReturn = (...args: unknown[]) => unknown;
+export type HandlerUnknownReturn = <TArgs extends unknown[], TResult>(
+  ...args: TArgs
+) => TResult;
 
-export type HandlerNoReturn = (...args: unknown[]) => void | Promise<void>;
+export type HandlerNoReturn = <TArgs extends unknown[]>(
+  ...args: TArgs
+) => void | Promise<void>;
 
 export type Option = {
   name: string;
@@ -57,6 +61,7 @@ export type PartialOptionInObject = Omit<Option, 'name'> &
   Partial<Pick<Option, 'name'>>;
 
 export type PartialOptions = Option[] | Record<string, PartialOptionInObject>;
+
 type PartialConfig = Omit<
   Partial<Config>,
   'commands' | 'options' | 'action'
@@ -66,7 +71,7 @@ type PartialConfig = Omit<
   action?: HandlerUnknownReturn;
 };
 
-const applyOptions = (program, options: Option[] = []) => {
+const applyOptions = (program: CommanderCommand, options: Option[] = []) => {
   for (const option of options) {
     const commanderOption = new CommanderOption(
       option.name,
@@ -123,8 +128,8 @@ const getNormalizedCommands = (commands?: PartialCommands): Command[] => {
 };
 
 const ignoreReturn =
-  func =>
-  (...args) => {
+  <TArgs extends unknown[], TReturn>(func: (...args: TArgs) => TReturn) =>
+  (...args: TArgs) => {
     const result = func(...args);
 
     if (pIsPromise(result)) {
@@ -132,7 +137,9 @@ const ignoreReturn =
     }
   };
 
-export default (configInput: PartialConfig = {}) => {
+export default <TPartialConfig extends PartialConfig>(
+  configInput: TPartialConfig,
+) => {
   const config: Config = defu(
     {
       ...configInput,
@@ -144,6 +151,7 @@ export default (configInput: PartialConfig = {}) => {
   );
 
   const program = new CommanderCommand();
+  program.allowExcessArguments();
 
   if (config.version) {
     program.version(config.version);
@@ -176,15 +184,28 @@ export default (configInput: PartialConfig = {}) => {
       compact([command.name, command.arguments]).join(' '),
     );
 
-    cmd.description(command.description);
+    cmd.allowExcessArguments();
+
+    if (command.description) {
+      cmd.description(command.description);
+    }
+
     cmd.action(command.handler);
     applyOptions(cmd, command.options);
   }
 
   if (config.defaultCommandName && process.argv.length <= 2) {
-    return config.commands
-      .find(command => command.name === config.defaultCommandName)
-      .handler();
+    const defaultCommand = config.commands.find(
+      command => command.name === config.defaultCommandName,
+    );
+
+    if (!defaultCommand) {
+      throw new Error(
+        `Default command "${config.defaultCommandName}" not found.`,
+      );
+    }
+
+    return defaultCommand.handler();
   }
 
   if (config.commands.length > 0) {
