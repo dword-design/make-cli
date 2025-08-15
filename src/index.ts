@@ -6,9 +6,9 @@ import {
 import { compact } from 'lodash-es';
 import pIsPromise from 'p-is-promise';
 
-export type HandlerUnknownReturn = (...args: unknown[]) => unknown;
+export type HandlerUnknownReturn = <TArgs extends unknown[], TResult>(...args: TArgs) => TResult;
 
-export type HandlerNoReturn = (...args: unknown[]) => void | Promise<void>;
+export type HandlerNoReturn = <TArgs extends unknown[]>(...args: TArgs) => void | Promise<void>;
 
 export type Option = {
   name: string;
@@ -66,7 +66,7 @@ type PartialConfig = Omit<
   action?: HandlerUnknownReturn;
 };
 
-const applyOptions = (program, options: Option[] = []) => {
+const applyOptions = (program: CommanderCommand, options: Option[] = []) => {
   for (const option of options) {
     const commanderOption = new CommanderOption(
       option.name,
@@ -122,9 +122,9 @@ const getNormalizedCommands = (commands?: PartialCommands): Command[] => {
   }));
 };
 
-const ignoreReturn =
-  func =>
-  (...args) => {
+const ignoreReturn = <TFunc extends (...args: any[]) => any>
+  (func: TFunc) =>
+  (...args: Parameters<TFunc>) => {
     const result = func(...args);
 
     if (pIsPromise(result)) {
@@ -176,7 +176,9 @@ export default (configInput: PartialConfig = {}) => {
       compact([command.name, command.arguments]).join(' '),
     );
 
-    cmd.description(command.description);
+    if (command.description) {
+      cmd.description(command.description);
+    }
     cmd.action(command.handler);
     applyOptions(cmd, command.options);
   }
