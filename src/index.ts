@@ -6,9 +6,13 @@ import {
 import { compact } from 'lodash-es';
 import pIsPromise from 'p-is-promise';
 
-export type HandlerUnknownReturn = <TArgs extends unknown[], TResult>(...args: TArgs) => TResult;
+export type HandlerUnknownReturn = <TArgs extends unknown[], TResult>(
+  ...args: TArgs
+) => TResult;
 
-export type HandlerNoReturn = <TArgs extends unknown[]>(...args: TArgs) => void | Promise<void>;
+export type HandlerNoReturn = <TArgs extends unknown[]>(
+  ...args: TArgs
+) => void | Promise<void>;
 
 export type Option = {
   name: string;
@@ -57,6 +61,7 @@ export type PartialOptionInObject = Omit<Option, 'name'> &
   Partial<Pick<Option, 'name'>>;
 
 export type PartialOptions = Option[] | Record<string, PartialOptionInObject>;
+
 type PartialConfig = Omit<
   Partial<Config>,
   'commands' | 'options' | 'action'
@@ -122,8 +127,8 @@ const getNormalizedCommands = (commands?: PartialCommands): Command[] => {
   }));
 };
 
-const ignoreReturn = <TFunc extends (...args: any[]) => any>
-  (func: TFunc) =>
+const ignoreReturn =
+  <TFunc extends (...args: any[]) => any>(func: TFunc) =>
   (...args: Parameters<TFunc>) => {
     const result = func(...args);
 
@@ -179,14 +184,23 @@ export default (configInput: PartialConfig = {}) => {
     if (command.description) {
       cmd.description(command.description);
     }
+
     cmd.action(command.handler);
     applyOptions(cmd, command.options);
   }
 
   if (config.defaultCommandName && process.argv.length <= 2) {
-    return config.commands
-      .find(command => command.name === config.defaultCommandName)
-      .handler();
+    const defaultCommand = config.commands.find(
+      command => command.name === config.defaultCommandName,
+    );
+
+    if (!defaultCommand) {
+      throw new Error(
+        `Default command "${config.defaultCommandName}" not found.`,
+      );
+    }
+
+    return defaultCommand.handler();
   }
 
   if (config.commands.length > 0) {
