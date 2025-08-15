@@ -128,8 +128,8 @@ const getNormalizedCommands = (commands?: PartialCommands): Command[] => {
 };
 
 const ignoreReturn =
-  <TFunc extends (...args: any[]) => any>(func: TFunc) =>
-  (...args: Parameters<TFunc>) => {
+  <TArgs extends unknown[], TReturn>(func: (...args: TArgs) => TReturn) =>
+  (...args: TArgs) => {
     const result = func(...args);
 
     if (pIsPromise(result)) {
@@ -137,7 +137,9 @@ const ignoreReturn =
     }
   };
 
-export default (configInput: PartialConfig = {}) => {
+export default <TPartialConfig extends PartialConfig>(
+  configInput: TPartialConfig,
+) => {
   const config: Config = defu(
     {
       ...configInput,
@@ -149,6 +151,7 @@ export default (configInput: PartialConfig = {}) => {
   );
 
   const program = new CommanderCommand();
+  program.allowExcessArguments();
 
   if (config.version) {
     program.version(config.version);
@@ -180,6 +183,8 @@ export default (configInput: PartialConfig = {}) => {
     const cmd = program.command(
       compact([command.name, command.arguments]).join(' '),
     );
+
+    cmd.allowExcessArguments();
 
     if (command.description) {
       cmd.description(command.description);
