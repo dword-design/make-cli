@@ -56,7 +56,7 @@
     "p-is-promise": "^4.0.0"
   },
   "devDependencies": {
-    "@dword-design/base": "^15.3.6",
+    "@dword-design/base": "^16.0.0",
     "@playwright/test": "^1.54.2",
     "@types/fs-extra": "^11.0.4",
     "@types/lodash-es": "^4.17.12",
