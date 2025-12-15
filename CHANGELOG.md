@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/dword-design/make-cli/compare/v5.0.1...v6.0.0) (2025-12-15)
+
+
+### Bug Fixes
+
+* update dependency @dword-design/base to v16 ([#192](https://github.com/dword-design/make-cli/issues/192)) ([ab75007](https://github.com/dword-design/make-cli/commit/ab750074813fb47dcb63a73c8d295b48fbb90bc3))
+
+
+### BREAKING CHANGES
+
+* node.js >= 22
+
 ## [5.0.1](https://github.com/dword-design/make-cli/compare/v5.0.0...v5.0.1) (2025-08-15)
 
 
