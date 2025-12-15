@@ -12,7 +12,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3
       commander:
-        specifier: ^14.0.0
+        specifier: ^14.0.2
         version: 14.0.2
       lodash-es:
         specifier: ^4.17.21
@@ -22,10 +22,10 @@ importers:
         version: 4.0.0
     devDependencies:
       '@dword-design/base':
-        specifier: ^16.0.0
+        specifier: ^16.1.4
         version: 16.1.4(@types/node@25.0.2)(@typescript-eslint/parser@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@typescript-eslint/utils@8.49.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-core@3.5.25)(esbuild@0.27.1)
       '@playwright/test':
-        specifier: ^1.54.2
+        specifier: ^1.57.0
         version: 1.57.0
       '@types/fs-extra':
         specifier: ^11.0.4
@@ -37,10 +37,10 @@ importers:
         specifier: npm:@dword-design/endent@^1.4.7
         version: '@dword-design/endent@1.4.7'
       execa:
-        specifier: ^9.6.0
+        specifier: ^9.6.1
         version: 9.6.1
       fs-extra:
-        specifier: ^11.3.1
+        specifier: ^11.3.2
         version: 11.3.2
 
 packages:
