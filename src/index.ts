@@ -133,7 +133,7 @@ const ignoreReturn =
     const result = func(...args);
 
     if (pIsPromise(result)) {
-      return Promise.resolve();
+      return result.then(() => {});
     }
   };
 

@@ -388,3 +388,29 @@ test('version', async ({}, testInfo) => {
   const { stdout } = await execaCommand('tsx cli.ts --version', { cwd });
   expect(stdout).toEqual('0.1.0');
 });
+
+test('cli waits for action', async ({}, testInfo) => {
+  const cwd = testInfo.outputPath();
+
+  await fs.outputFile(
+    pathLib.join(cwd, 'cli.ts'),
+    endent`
+      import self from '../../src';
+
+      await self({
+        action: async () => {
+          await new Promise(resolve => setTimeout(resolve, 100));
+          console.log('action done');
+        },
+      });
+      console.log('cli done');
+    `,
+  );
+
+  const { stdout } = await execaCommand('tsx cli.ts', { cwd });
+
+  expect(stdout).toEqual(endent`
+    action done
+    cli done
+  `);
+});
