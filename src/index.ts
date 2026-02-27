@@ -1,4 +1,4 @@
-import defu from '@dword-design/defu';
+import defaults from '@dword-design/defaults';
 import {
   Command as CommanderCommand,
   Option as CommanderOption,
@@ -98,7 +98,7 @@ const getNormalizedOptions = (options?: PartialOptions): Option[] => {
   }
 
   return Object.entries(options).map(([name, option]) =>
-    defu(option, { name }),
+    defaults(option, { name }),
   );
 };
 
@@ -140,7 +140,7 @@ const ignoreReturn =
 export default <TPartialConfig extends PartialConfig>(
   configInput: TPartialConfig,
 ) => {
-  const config = defu(
+  const config = defaults(
     {
       ...configInput,
       commands: getNormalizedCommands(configInput.commands),
