@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/dword-design/make-cli/compare/v6.0.0...v6.0.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* updates ([d953945](https://github.com/dword-design/make-cli/commit/d953945362226269e97098ac586be3de6211bcf0))
+
 # [6.0.0](https://github.com/dword-design/make-cli/compare/v5.0.1...v6.0.0) (2025-12-15)
 
 
