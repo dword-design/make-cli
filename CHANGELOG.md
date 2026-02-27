@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/dword-design/make-cli/compare/v6.0.1...v6.0.2) (2026-02-27)
+
+
+### Bug Fixes
+
+* fix cli not waiting for actions ([605de60](https://github.com/dword-design/make-cli/commit/605de60282cb8ff73eafd5e51b6ec9b0b86c843f))
+
 ## [6.0.1](https://github.com/dword-design/make-cli/compare/v6.0.0...v6.0.1) (2026-02-27)
 
 
