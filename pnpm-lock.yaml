@@ -2920,8 +2920,8 @@ packages:
     resolution: {integrity: sha512-h+kzzkOlv7hFf9c4c6MhrFRix+ii1NNFaTyQJbR4aol84hFeepgicTlJLEfkFKGAIjlFbfNM1pL3iWK1aIRtRQ==}
     engines: {node: '>=18'}
 
-  make-cli@6.0.0:
-    resolution: {integrity: sha512-0CpokgXre8GhJiAxfH+MZTcOZPqmdn+ezHXwqyVhMDhQkCR6FrNX7yIEwnMi+dDf+rC6DYoan6fHEMHabMjGsA==}
+  make-cli@6.0.2:
+    resolution: {integrity: sha512-TGXzhbItokIn9reaq7a9jaAoj4qI114+jJKjUip6DfBxdaZGy9posl2YRFZmM/FNvPq2Cl0ieWrmevdwCA7RNA==}
     engines: {node: '>=22'}
 
   make-dir@4.0.0:
@@ -4865,7 +4865,7 @@ snapshots:
       execa: 9.6.1
       find-up: 8.0.0
       fs-extra: 11.3.3
-      make-cli: 6.0.0
+      make-cli: 6.0.2
       map-obj: 6.0.0
 
   '@dword-design/endent@1.4.7':
@@ -7589,9 +7589,9 @@ snapshots:
       lodash-es: 4.17.23
       p-is-promise: 4.0.0
 
-  make-cli@6.0.0:
+  make-cli@6.0.2:
     dependencies:
-      '@dword-design/defu': 1.0.3
+      '@dword-design/defaults': 1.1.2
       commander: 14.0.3
       lodash-es: 4.17.23
       p-is-promise: 4.0.0
